@@ -60,7 +60,7 @@ namespace app.Service.CaseStatus
                 using (_unitOfWork)
                 {
                     var list = await _unitOfWork.ClaimStatusRepository.GetAllAsync();
-                    result.TransactionResult = list.Select(l => new CaseStatusDTO { ClaimStatus = l.Status.ToString() });
+                    result.TransactionResult = list.Select(l => new CaseStatusDTO { ClaimStatus = l.Status,  });
                 }
             }
             catch (Exception ex)

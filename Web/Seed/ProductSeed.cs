@@ -10,7 +10,17 @@ namespace app.Data.Seed
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.HasData(new Product { Id = 1, ProductName = "Example Product", Barcode = "EX01", CreateDate = DateTime.Now, UnitOfMeasureId = 1, Price = 1 });
+            builder.HasData(new Product
+            {
+                Id = 1,
+                ProductName = "Example Product",
+                Barcode = "EX01",
+                CreateDate = DateTime.Now,
+                UnitOfMeasureId = 1,
+                Price = 1,
+                Status = Status.CREATED.ToString(),
+                StatusId = 1,
+            });
         }
     }
 }

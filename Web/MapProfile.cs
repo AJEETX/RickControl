@@ -135,9 +135,11 @@ namespace app.Mapper
 
             CreateMap<Product, ProductDTO>()
                  .ForMember(dm => dm.CategoryName, vm => vm.MapFrom(vmf => vmf.Category != null ? vmf.Category.CategoryName : "-"))
-                 .ForMember(dm => dm.KYCCaseStatus, vm => vm.MapFrom(vmf => vmf.Status != null ? vmf.Status.Status.ToString() : "-"))
+                 //.ForMember(dm => dm.Status, vm => vm.MapFrom(vmf => vmf.StatusId != null ? vmf.Status : "-"))
                  .ForMember(dm => dm.UnitOfMeasureName, vm => vm.MapFrom(vmf => vmf.UnitOfMeasure != null ? vmf.UnitOfMeasure.Isocode : "-"));
-            CreateMap<ProductDTO, Product>();
+            CreateMap<ProductDTO, Product>()
+                //.ForMember(dm => dm.Status, vm => vm.MapFrom(vmf => vmf.Status != null ? vmf.Status : "-"))
+                ;
 
             CreateMap<Transaction, TransactionDTO>()
                 .ForMember(dm => dm.StoreName, vm => vm.MapFrom(vmf => vmf.Store != null ? vmf.Store.StoreName + "-" + vmf.Store.StoreCode : "-"))

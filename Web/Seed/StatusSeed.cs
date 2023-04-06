@@ -11,13 +11,13 @@ namespace app.Data.Seed
         public void Configure(EntityTypeBuilder<CaseStatus> builder)
         {
             builder.HasData(
-                new CaseStatus { Id = 1, Status = ClaimStatus.CREATED, CreateDate = DateTime.Now  },
-                new CaseStatus { Id = 2, Status = ClaimStatus.REJECTED, CreateDate = DateTime.Now },
-                new CaseStatus { Id = 3, Status = ClaimStatus.CLOSED, CreateDate = DateTime.Now },
-                new CaseStatus { Id = 4, Status = ClaimStatus.ASSIGNED, CreateDate = DateTime.Now },
-                new CaseStatus { Id = 5, Status = ClaimStatus.INVESTIGATING, CreateDate = DateTime.Now },
-                new CaseStatus { Id = 6, Status = ClaimStatus.PENDING, CreateDate = DateTime.Now },
-                new CaseStatus { Id = 7, Status = ClaimStatus.APPROVED, CreateDate = DateTime.Now }
+                new CaseStatus { Id = 1, Status = Status.CREATED.ToString(), CreateDate = DateTime.Now  },
+                new CaseStatus { Id = 2, Status = Status.REJECTED.ToString(), CreateDate = DateTime.Now },
+                new CaseStatus { Id = 3, Status = Status.CLOSED.ToString(), CreateDate = DateTime.Now },
+                new CaseStatus { Id = 4, Status = Status.ASSIGNED.ToString(), CreateDate = DateTime.Now },
+                new CaseStatus { Id = 5, Status = Status.INVESTIGATING.ToString(), CreateDate = DateTime.Now },
+                new CaseStatus { Id = 6, Status = Status.PENDING.ToString(), CreateDate = DateTime.Now },
+                new CaseStatus { Id = 7, Status = Status.APPROVED.ToString(), CreateDate = DateTime.Now }
             );
         }
     }

@@ -33,8 +33,8 @@ namespace app.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -44,44 +44,44 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(3240),
-                            Status = 0
+                            CreateDate = new DateTime(2023, 4, 7, 3, 30, 38, 162, DateTimeKind.Local).AddTicks(2528),
+                            Status = "CREATED"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(3243),
-                            Status = 5
+                            CreateDate = new DateTime(2023, 4, 7, 3, 30, 38, 162, DateTimeKind.Local).AddTicks(2532),
+                            Status = "REJECTED"
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(3245),
-                            Status = 2
+                            CreateDate = new DateTime(2023, 4, 7, 3, 30, 38, 162, DateTimeKind.Local).AddTicks(2535),
+                            Status = "CLOSED"
                         },
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(3248),
-                            Status = 1
+                            CreateDate = new DateTime(2023, 4, 7, 3, 30, 38, 162, DateTimeKind.Local).AddTicks(2538),
+                            Status = "ASSIGNED"
                         },
                         new
                         {
                             Id = 5,
-                            CreateDate = new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(3250),
-                            Status = 4
+                            CreateDate = new DateTime(2023, 4, 7, 3, 30, 38, 162, DateTimeKind.Local).AddTicks(2541),
+                            Status = "INVESTIGATING"
                         },
                         new
                         {
                             Id = 6,
-                            CreateDate = new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(3253),
-                            Status = 3
+                            CreateDate = new DateTime(2023, 4, 7, 3, 30, 38, 162, DateTimeKind.Local).AddTicks(2544),
+                            Status = "PENDING"
                         },
                         new
                         {
                             Id = 7,
-                            CreateDate = new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(3255),
-                            Status = 6
+                            CreateDate = new DateTime(2023, 4, 7, 3, 30, 38, 162, DateTimeKind.Local).AddTicks(2547),
+                            Status = "APPROVED"
                         });
                 });
 
@@ -159,6 +159,9 @@ namespace app.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("StatusId")
                         .HasColumnType("int");
 
@@ -169,8 +172,6 @@ namespace app.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("StatusId");
-
                     b.HasIndex("UnitOfMeasureId");
 
                     b.ToTable("Product", (string)null);
@@ -180,9 +181,10 @@ namespace app.Migrations
                         {
                             Id = 1,
                             Barcode = "EX01",
-                            CreateDate = new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(3016),
+                            CreateDate = new DateTime(2023, 4, 7, 3, 30, 38, 162, DateTimeKind.Local).AddTicks(2293),
                             Price = 1m,
                             ProductName = "Example Product",
+                            Status = "CREATED",
                             UnitOfMeasureId = 1
                         });
                 });
@@ -216,7 +218,7 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(2949),
+                            CreateDate = new DateTime(2023, 4, 7, 3, 30, 38, 162, DateTimeKind.Local).AddTicks(2225),
                             StoreCode = "EX01",
                             StoreName = "Example Store"
                         });
@@ -323,19 +325,19 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(1863),
+                            CreateDate = new DateTime(2023, 4, 7, 3, 30, 38, 162, DateTimeKind.Local).AddTicks(1030),
                             TransactionTypeName = "Stock Receipt"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(1912),
+                            CreateDate = new DateTime(2023, 4, 7, 3, 30, 38, 162, DateTimeKind.Local).AddTicks(1077),
                             TransactionTypeName = "Stock Out"
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(1915),
+                            CreateDate = new DateTime(2023, 4, 7, 3, 30, 38, 162, DateTimeKind.Local).AddTicks(1081),
                             TransactionTypeName = "Transfer"
                         });
                 });
@@ -369,21 +371,21 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(2139),
+                            CreateDate = new DateTime(2023, 4, 7, 3, 30, 38, 162, DateTimeKind.Local).AddTicks(1543),
                             Isocode = "pc",
                             UnitOfMeasureName = "Piece"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(2146),
+                            CreateDate = new DateTime(2023, 4, 7, 3, 30, 38, 162, DateTimeKind.Local).AddTicks(1554),
                             Isocode = "kg",
                             UnitOfMeasureName = "Kilogram"
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(2151),
+                            CreateDate = new DateTime(2023, 4, 7, 3, 30, 38, 162, DateTimeKind.Local).AddTicks(1558),
                             Isocode = "m",
                             UnitOfMeasureName = "Meter"
                         });
@@ -439,7 +441,7 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(2827),
+                            CreateDate = new DateTime(2023, 4, 7, 3, 30, 38, 162, DateTimeKind.Local).AddTicks(2149),
                             Email = "admin@admin.com",
                             Name = "Admin",
                             Password = "827ccb0eea8a706c4c34a16891f84e7b",
@@ -453,10 +455,6 @@ namespace app.Migrations
                         .WithMany("Product")
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("app.Data.Entity.CaseStatus", "Status")
-                        .WithMany()
-                        .HasForeignKey("StatusId");
-
                     b.HasOne("app.Data.Entity.UnitOfMeasure", "UnitOfMeasure")
                         .WithMany("Product")
                         .HasForeignKey("UnitOfMeasureId")
@@ -464,8 +462,6 @@ namespace app.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-
-                    b.Navigation("Status");
 
                     b.Navigation("UnitOfMeasure");
                 });

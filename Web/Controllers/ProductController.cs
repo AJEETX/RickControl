@@ -53,7 +53,6 @@ namespace app.Web.Controllers
         {
             CreateProductViewModel model = new CreateProductViewModel();
             model.CategoryList = await GetCategoryList();
-            model.StatusList = await GetStatusList();
             model.UnitOfMeasureList = await GetUnitOfMeasureList();
             return View(model);
         }
@@ -74,7 +73,14 @@ namespace app.Web.Controllers
                     model.ImageFile.CopyTo(new FileStream(upload, FileMode.Create));
                     model.Image = newFileName;
                 }
-
+                if (model.CategoryId != null)
+                {
+                    model.Status = Status.CREATED.ToString();
+                }
+                else
+                {
+                    model.Status = Status.ASSIGNED.ToString();
+                }
                 ProductDTO productDTO = _mapper.Map<ProductDTO>(model);
                 var serviceResult = await _productService.AddAsync(productDTO);
                 jsonResultModel = _mapper.Map<JsonResultModel>(serviceResult);
@@ -147,7 +153,19 @@ namespace app.Web.Controllers
 
                 if (serviceCountResult.IsSucceeded && serviceListResult.IsSucceeded)
                 {
-                    List<ListProductViewModel> listVM = _mapper.Map<List<ListProductViewModel>>(serviceListResult.TransactionResult);
+                    List<ListProductViewModel> listVM = serviceListResult.TransactionResult.Select(l => new ListProductViewModel
+                    {
+                        Barcode = l.Barcode,
+                        CategoryName = l.CategoryName,
+                        Id = l.Id.Value,
+                        ImageDisplay = l.Image,
+                        Price = l.Price?.ToString(),
+                        ProductName = l.ProductName,
+                        Status = l.Status,
+                        UnitOfMeasureName = l.UnitOfMeasureName,
+
+                    }).ToList();
+                    //List<ListProductViewModel> listVM = _mapper.Map<List<ListProductViewModel>>(serviceListResult.TransactionResult);
                     jsonDataTableModel.aaData = listVM;
                     jsonDataTableModel.iTotalDisplayRecords = serviceCountResult.TransactionResult;
                     jsonDataTableModel.iTotalRecords = serviceCountResult.TransactionResult;

@@ -16,6 +16,7 @@ $(document).ready(function () {
                 { "name": "ProductName", "value": $('input[name="ProductName"]').val() },
                 { "name": "Barcode", "value": $('input[name="Barcode"]').val() },
                 { "name": "CategoryId", "value": $('select[name="CategoryId"]').val() },
+                { "name": "StatusId", "value": $('select[name="StatusId"]').val() },
                 { "name": "UnitOfMeasureId", "value": $('select[name="UnitOfMeasureId"]').val() }
             );
             $.ajax({
@@ -57,6 +58,9 @@ $(document).ready(function () {
                 },
                 {
                     mDataProp: "UnitOfMeasureName"
+                },
+                {
+                    mDataProp: "Status"
                 },
                 {
                     "sDefaultContent": "",

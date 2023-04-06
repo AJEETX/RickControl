@@ -6,10 +6,10 @@ namespace app.Data.Entity
     public class CaseStatus : BaseEntity
     {
 
-        public ClaimStatus Status { get; set; }
+        public string Status { get; set; }
  
     }
-    public enum ClaimStatus
+    public enum Status
     {
         CREATED,
         ASSIGNED,

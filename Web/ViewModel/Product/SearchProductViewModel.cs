@@ -18,7 +18,7 @@ namespace app.Model.ViewModel.Product
         public int? CategoryId { get; set; }
 
         [Display(Name = "Status")]
-        public int? StatusId { get; set; }
+        public string Status { get; set; }
 
         [Display(Name = "Unit Of Measure")]
         public int? UnitOfMeasureId { get; set; }

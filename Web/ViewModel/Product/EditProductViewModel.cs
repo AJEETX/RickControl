@@ -39,7 +39,7 @@ namespace app.Model.ViewModel.Product
         [Display(Name = "Unit Of Measure")]
         public int UnitOfMeasureId { get; set; }
         [Display(Name = "Status")]
-        public int? StatusId { get; set; }
+        public string Status { get; set; }
 
         public IEnumerable<SelectListItem> StatusList { get; set; }
 
