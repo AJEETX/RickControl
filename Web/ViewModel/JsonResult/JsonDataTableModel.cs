@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TS.EasyStockManager.Model.ViewModel.JsonResult
+﻿namespace app.Model.ViewModel.JsonResult
 {
     public class JsonDataTableModel: JsonResultModel
     {

@@ -1,10 +1,6 @@
-﻿using app.Entity;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using TS.EasyStockManager.Data.Entity;
+﻿using app.Data.Entity;
 
-namespace TS.EasyStockManager.Model.Domain
+namespace app.Model.Domain
 {
     public class UserDTO : BaseDTO
     {

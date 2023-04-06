@@ -1,18 +1,17 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using TS.EasyStockManager.Common.Extensions;
-using TS.EasyStockManager.Core.Service;
-using TS.EasyStockManager.Core.UnitOfWorks;
-using TS.EasyStockManager.Model.Domain;
-using TS.EasyStockManager.Model.Service;
-using TS.EasyStockManager.Service.Base;
 using app.Message;
-using Entity = TS.EasyStockManager.Data.Entity;
+using Entity = app.Data.Entity;
+using app.Service.Base;
+using app.Core.Service;
+using app.Model.Service;
+using app.Model.Domain;
+using app.Core;
+using app.Common.Extensions;
 
-namespace TS.EasyStockManager.Service.User
+namespace app.Service.User
 {
     public class UserService : BaseService, IUserService
     {

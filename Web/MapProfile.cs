@@ -1,22 +1,19 @@
-﻿using AutoMapper;
+﻿using app.Data.Entity;
+using app.Model.Domain;
+using app.Model.Service;
+using app.Model.ViewModel.Category;
+using app.Model.ViewModel.JsonResult;
+using app.Model.ViewModel.Product;
+using app.Model.ViewModel.Report.StoreStock;
+using app.Model.ViewModel.Report.TransactionDetail;
+using app.Model.ViewModel.Store;
+using app.Model.ViewModel.Transaction;
+using app.Model.ViewModel.UnitOfMeasure;
+using app.Model.ViewModel.User;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using TS.EasyStockManager.Data.Entity;
-using TS.EasyStockManager.Model.Domain;
-using TS.EasyStockManager.Model.Service;
-using TS.EasyStockManager.Model.ViewModel.Category;
-using TS.EasyStockManager.Model.ViewModel.JsonResult;
-using TS.EasyStockManager.Model.ViewModel.Product;
-using TS.EasyStockManager.Model.ViewModel.Report.StoreStock;
-using TS.EasyStockManager.Model.ViewModel.Report.TransactionDetail;
-using TS.EasyStockManager.Model.ViewModel.Store;
-using TS.EasyStockManager.Model.ViewModel.Transaction;
-using TS.EasyStockManager.Model.ViewModel.UnitOfMeasure;
-using TS.EasyStockManager.Model.ViewModel.User;
 
-namespace TS.EasyStockManager.Mapper
+namespace app.Mapper
 {
     public class MapProfile : Profile
     {

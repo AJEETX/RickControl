@@ -1,7 +1,16 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using app.Core;
+using app.Core.Repository;
+using app.Core.Service;
+using app.Data.Context;
+using app.Repository.Base;
+using app.Service.Category;
+using app.Service.Product;
+using app.Service.Store;
+using app.Service.StoreStock;
+using app.Service.Transaction;
+using app.Service.UnitOfMeasure;
+using app.Service.User;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,20 +19,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TS.EasyStockManager.Core.Repository;
-using TS.EasyStockManager.Core.Service;
-using TS.EasyStockManager.Core.UnitOfWorks;
-using TS.EasyStockManager.Data.Context;
-using TS.EasyStockManager.Repository.Base;
-using TS.EasyStockManager.Service.Category;
-using TS.EasyStockManager.Service.Product;
-using TS.EasyStockManager.Service.Store;
-using TS.EasyStockManager.Service.StoreStock;
-using TS.EasyStockManager.Service.Transaction;
-using TS.EasyStockManager.Service.UnitOfMeasure;
-using TS.EasyStockManager.Service.User;
 
-namespace TS.EasyStockManager.Web
+namespace app.Web
 {
     public class Startup
     {
@@ -37,14 +34,11 @@ namespace TS.EasyStockManager.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<EasyStockManagerDbContext>(options =>
+            services.AddDbContext<RiskControlDbContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionStrings:SqlConStr"].ToString(), o =>
-                {
-                    o.MigrationsAssembly("TS.EasyStockManager.Data");
-                });
+                options.UseSqlServer(Configuration["ConnectionStrings:SqlConStr"].ToString());
             });
-            services.AddAutoMapper(c => c.AddProfile<TS.EasyStockManager.Mapper.MapProfile>(), typeof(Startup));
+            services.AddAutoMapper(c => c.AddProfile<app.Mapper.MapProfile>(), typeof(Startup));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IUnitOfMeasureService, UnitOfMeasureService>();
@@ -53,7 +47,7 @@ namespace TS.EasyStockManager.Web
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IStoreStockService, StoreStockService>();
             services.AddScoped<ITransactionService, TransactionService>();
-            services.AddScoped<IUnitOfWorks, TS.EasyStockManager.UnitOfWork.UnitOfWork>();
+            services.AddScoped<IUnitOfWorks, UnitOfWork>();
             services.AddControllersWithViews().
                     AddJsonOptions(options =>
                     {

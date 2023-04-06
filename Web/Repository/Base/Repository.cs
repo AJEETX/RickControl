@@ -1,13 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using app.Core.Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
-using TS.EasyStockManager.Core.Repository;
 
-namespace TS.EasyStockManager.Repository.Base
+namespace app.Repository.Base
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {

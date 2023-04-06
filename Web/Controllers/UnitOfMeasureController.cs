@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using app.Core.Service;
+using app.Model.Domain;
+using app.Model.Service;
+using app.Model.ViewModel.JsonResult;
+using app.Model.ViewModel.UnitOfMeasure;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using TS.EasyStockManager.Core.Service;
-using TS.EasyStockManager.Model.Domain;
-using TS.EasyStockManager.Model.Service;
-using TS.EasyStockManager.Model.ViewModel.JsonResult;
-using TS.EasyStockManager.Model.ViewModel.UnitOfMeasure;
 
-namespace TS.EasyStockManager.Web.Controllers
+namespace app.Web.Controllers
 {
     public class UnitOfMeasureController : Controller
     {

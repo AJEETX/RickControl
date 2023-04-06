@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace TS.EasyStockManager.Model.Domain
+namespace app.Model.Domain
 {
     public class TransactionDTO : BaseDTO
     {

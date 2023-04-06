@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace TS.EasyStockManager.Core.Repository
+namespace app.Core.Repository
 {
-    public interface IProductRepository : IRepository<TS.EasyStockManager.Data.Entity.Product>
+    public interface IProductRepository : IRepository<Data.Entity.Product>
     {
         Task DeleteProductImage(int id);
-        Task<IEnumerable<TS.EasyStockManager.Data.Entity.Product>> GetProductsByBarcodeAndName(string term);
+        Task<IEnumerable<Data.Entity.Product>> GetProductsByBarcodeAndName(string term);
     }
 }

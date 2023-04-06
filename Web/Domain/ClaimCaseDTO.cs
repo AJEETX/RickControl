@@ -1,6 +1,4 @@
-﻿using app.Entity;
-using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
+﻿using app.Data.Entity;
 using System;
 
 namespace app.Domain

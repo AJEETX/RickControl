@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace TS.EasyStockManager.Core.Repository
+namespace app.Core.Repository
 {
-    public interface IUserRepository : IRepository<TS.EasyStockManager.Data.Entity.User>
+    public interface IUserRepository : IRepository<Data.Entity.User>
     {
         Task<bool> EmailValidationCreateUser(string email);
         Task<bool> EmailValidationUpdateUser(string email, int Id);

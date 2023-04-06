@@ -1,11 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using app.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using TS.EasyStockManager.Data.Entity;
 
-namespace TS.EasyStockManager.Data.Seed
+namespace app.Data.Seed
 {
     internal class StoreSeed : IEntityTypeConfiguration<Store>
     {

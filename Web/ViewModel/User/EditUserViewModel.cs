@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using TS.EasyStockManager.Model.ViewModel.Base;
+﻿using System.ComponentModel.DataAnnotations;
+using app.Data.Entity;
+using app.Model.ViewModel.Base;
 
-namespace TS.EasyStockManager.Model.ViewModel.User
+namespace app.Model.ViewModel.User
 {
     public class EditUserViewModel : BaseViewModel
     {
@@ -28,5 +26,7 @@ namespace TS.EasyStockManager.Model.ViewModel.User
         [MaxLength(30)]
         [Display]
         public string Surname { get; set; }
+        public Organisation? Organisation { get; set; }
+        public EmployeeType? EmployeeType { get; set; }
     }
 }

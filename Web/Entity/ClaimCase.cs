@@ -1,14 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
-using System;
-using TS.EasyStockManager.Data.Entity;
 
-namespace app.Entity
+namespace app.Data.Entity
 {
     public class ClaimCase : BaseEntity
     {
-        [Key]
-        public int Id { get; set; }
         [Required]
         [Display(Name = "Name")]
         public string Name { get; set; }
@@ -16,7 +11,6 @@ namespace app.Entity
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         public bool Active { get; set; }
-        public DateTime? RecordCreatedOn { get; set; }
         public Organisation? Organisation { get; set; }
 
     }

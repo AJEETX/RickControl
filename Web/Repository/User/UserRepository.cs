@@ -1,14 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using app.Core.Repository;
+using app.Data.Context;
+using app.Repository.Base;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
-using TS.EasyStockManager.Core.Repository;
-using TS.EasyStockManager.Data.Context;
-using TS.EasyStockManager.Repository.Base;
 
-namespace TS.EasyStockManager.Repository.User
+namespace app.Repository.User
 {
     public class UserRepository : Repository<Data.Entity.User>, IUserRepository
     {
-        private EasyStockManagerDbContext dbContext { get => _context as EasyStockManagerDbContext; }
+        private RiskControlDbContext dbContext { get => _context as RiskControlDbContext; }
 
         public UserRepository(DbContext context) : base(context)
         {

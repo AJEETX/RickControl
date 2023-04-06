@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using app.Core.Repository;
+using System;
 using System.Threading.Tasks;
-using TS.EasyStockManager.Core.Repository;
 
-namespace TS.EasyStockManager.Core.UnitOfWorks
+namespace app.Core
 {
     public interface IUnitOfWorks : IDisposable
     {

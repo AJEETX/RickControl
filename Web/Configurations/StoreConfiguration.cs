@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using app.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TS.EasyStockManager.Data.Entity;
 
-namespace TS.EasyStockManager.Data.Configurations
+namespace app.Data.Configurations
 {
     internal class StoreConfiguration : IEntityTypeConfiguration<Store>
     {

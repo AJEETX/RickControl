@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
+using app.Core.Service;
+using app.Model.Domain;
+using app.Model.Service;
+using app.Model.ViewModel.JsonResult;
+using app.Model.ViewModel.Product;
 using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using TS.EasyStockManager.Core.Service;
-using TS.EasyStockManager.Model.Domain;
-using TS.EasyStockManager.Model.Service;
-using TS.EasyStockManager.Model.ViewModel.JsonResult;
-using TS.EasyStockManager.Model.ViewModel.Product;
 
-namespace TS.EasyStockManager.Web.Controllers
+namespace app.Web.Controllers
 {
     public class ProductController : Controller
     {

@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using TS.EasyStockManager.Data.Entity;
+using app.Data.Entity;
 
-namespace TS.EasyStockManager.Data.Seed
+namespace app.Data.Seed
 {
     internal class TransactionTypeSeed : IEntityTypeConfiguration<TransactionType>
     {

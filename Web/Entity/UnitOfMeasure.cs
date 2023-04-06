@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace TS.EasyStockManager.Data.Entity
+namespace app.Data.Entity
 {
     public class UnitOfMeasure : BaseEntity
     {

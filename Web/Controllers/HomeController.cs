@@ -1,10 +1,9 @@
 ﻿
 using System.Diagnostics;
+using app.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
-using TS.EasyStockManager.Web.Models;
-
-namespace TS.EasyStockManager.Web.Controllers
+namespace app.Web.Controllers
 {
     public class HomeController : Controller
     {

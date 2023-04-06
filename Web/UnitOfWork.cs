@@ -1,30 +1,27 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿using app.Core.Repository;
+using app.Data.Context;
+using app.Repository.Category;
+using app.Repository.Product;
+using app.Repository.Store;
+using app.Repository.StoreStock;
+using app.Repository.Transaction;
+using app.Repository.TransactionDetail;
+using app.Repository.TransactionType;
+using app.Repository.UnitOfMeasure;
+using app.Repository.User;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using TS.EasyStockManager.Core.Repository;
-using TS.EasyStockManager.Core.UnitOfWorks;
-using TS.EasyStockManager.Data.Context;
-using TS.EasyStockManager.Repository.Category;
-using TS.EasyStockManager.Repository.Product;
-using TS.EasyStockManager.Repository.Store;
-using TS.EasyStockManager.Repository.StoreStock;
-using TS.EasyStockManager.Repository.Transaction;
-using TS.EasyStockManager.Repository.TransactionDetail;
-using TS.EasyStockManager.Repository.TransactionType;
-using TS.EasyStockManager.Repository.UnitOfMeasure;
-using TS.EasyStockManager.Repository.User;
 
-namespace TS.EasyStockManager.UnitOfWork
+namespace app.Core
 {
     public class UnitOfWork : IUnitOfWorks
     {
-        private readonly EasyStockManagerDbContext _context;
+        private readonly RiskControlDbContext _context;
         private IDbContextTransaction _transaction;
         private bool _disposed = false;
 
-        public UnitOfWork(EasyStockManagerDbContext easyStockManagerDbContext)
+        public UnitOfWork(RiskControlDbContext easyStockManagerDbContext)
         {
             _context = easyStockManagerDbContext;
         }

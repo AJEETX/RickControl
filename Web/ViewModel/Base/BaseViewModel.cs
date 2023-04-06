@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TS.EasyStockManager.Model.ViewModel.Base
+namespace app.Model.ViewModel.Base
 {
     public class BaseViewModel
     {

@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using app.Core.Service;
+using app.Model.Service;
+using app.Model.ViewModel.Auth;
+using app.Model.ViewModel.JsonResult;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TS.EasyStockManager.Core.Service;
-using TS.EasyStockManager.Model.Service;
-using TS.EasyStockManager.Model.ViewModel.Auth;
-using TS.EasyStockManager.Model.ViewModel.JsonResult;
 
-namespace TS.EasyStockManager.Web.Controllers
+namespace app.Web.Controllers
 {
     public class AuthController : Controller
     {

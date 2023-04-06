@@ -1,18 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using app.Core.Repository;
+using app.Data.Context;
+using app.Repository.Base;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using TS.EasyStockManager.Core.Repository;
-using TS.EasyStockManager.Data.Context;
-using TS.EasyStockManager.Repository.Base;
 
-namespace TS.EasyStockManager.Repository.Product
+namespace app.Repository.Product
 {
-    public class ProductRepository : Repository<TS.EasyStockManager.Data.Entity.Product>, IProductRepository
+    public class ProductRepository : Repository<Data.Entity.Product>, IProductRepository
     {
-        private EasyStockManagerDbContext dbContext { get => _context as EasyStockManagerDbContext; }
+        private RiskControlDbContext dbContext { get => _context as RiskControlDbContext; }
 
         public ProductRepository(DbContext context) : base(context)
         {
@@ -20,7 +18,7 @@ namespace TS.EasyStockManager.Repository.Product
 
         public async Task DeleteProductImage(int id)
         {
-            TS.EasyStockManager.Data.Entity.Product product = await dbContext.Product.FirstOrDefaultAsync(x => x.Id == id);
+            Data.Entity.Product product = await dbContext.Product.FirstOrDefaultAsync(x => x.Id == id);
 
             if (product != null)
             {

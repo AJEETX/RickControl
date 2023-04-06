@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using TS.EasyStockManager.Model.ViewModel.Base;
+using app.Model.ViewModel.Base;
 
-namespace TS.EasyStockManager.Model.ViewModel.Report.StoreStock
+namespace app.Model.ViewModel.Report.StoreStock
 {
     public class SearchStoreStockReportViewModel : BaseViewModel
     {

@@ -1,12 +1,8 @@
-﻿using app.Entity;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using TS.EasyStockManager.Data.Entity;
-using TS.EasyStockManager.Model.ViewModel.Base;
+﻿using System.ComponentModel.DataAnnotations;
+using app.Data.Entity;
+using app.Model.ViewModel.Base;
 
-namespace TS.EasyStockManager.Model.ViewModel.User
+namespace app.Model.ViewModel.User
 {
     public class CreateUserViewModel: BaseViewModel
     {

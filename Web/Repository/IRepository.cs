@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace TS.EasyStockManager.Core.Repository
+namespace app.Core.Repository
 {
     public interface IRepository<TEntity> where TEntity : class
     {

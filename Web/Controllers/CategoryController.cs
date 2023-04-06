@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using app.Core.Service;
+using app.Model.Domain;
+using app.Model.Service;
+using app.Model.ViewModel.Category;
+using app.Model.ViewModel.JsonResult;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using TS.EasyStockManager.Core.Service;
-using TS.EasyStockManager.Model.Domain;
-using TS.EasyStockManager.Model.Service;
-using TS.EasyStockManager.Model.ViewModel.Category;
-using TS.EasyStockManager.Model.ViewModel.JsonResult;
 
-namespace TS.EasyStockManager.Web.Controllers
+namespace app.Web.Controllers
 {
     public class CategoryController : Controller
     {

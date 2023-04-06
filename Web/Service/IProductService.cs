@@ -1,11 +1,9 @@
-﻿using System;
+﻿using app.Model.Domain;
+using app.Model.Service;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using TS.EasyStockManager.Model.Domain;
-using TS.EasyStockManager.Model.Service;
 
-namespace TS.EasyStockManager.Core.Service
+namespace app.Core.Service
 {
     public interface IProductService : IService<ProductDTO>
     {

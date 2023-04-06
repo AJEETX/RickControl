@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using app.Model.ViewModel.Base;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using TS.EasyStockManager.Model.ViewModel.Base;
 
-namespace TS.EasyStockManager.Model.ViewModel.Auth
+namespace app.Model.ViewModel.Auth
 {
     public class LoginViewModel : BaseViewModel
     {

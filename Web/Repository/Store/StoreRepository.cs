@@ -1,16 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using TS.EasyStockManager.Core.Repository;
-using TS.EasyStockManager.Data.Context;
-using TS.EasyStockManager.Repository.Base;
+﻿using app.Core.Repository;
+using app.Data.Context;
+using app.Repository.Base;
+using Microsoft.EntityFrameworkCore;
 
-namespace TS.EasyStockManager.Repository.Store
+namespace app.Repository.Store
 {
-    public class StoreRepository : Repository<TS.EasyStockManager.Data.Entity.Store>, IStoreRepository
+    public class StoreRepository : Repository<Data.Entity.Store>, IStoreRepository
     {
-        private EasyStockManagerDbContext dbContext { get => _context as EasyStockManagerDbContext; }
+        private RiskControlDbContext dbContext { get => _context as RiskControlDbContext; }
 
         public StoreRepository(DbContext context) : base(context)
         {

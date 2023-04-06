@@ -2,18 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using TS.EasyStockManager.Common.Enums;
-using TS.EasyStockManager.Core.Service;
-using TS.EasyStockManager.Core.UnitOfWorks;
-using TS.EasyStockManager.Model.Domain;
-using TS.EasyStockManager.Model.Service;
-using TS.EasyStockManager.Service.Base;
 using app.Message;
-using Entity = TS.EasyStockManager.Data.Entity;
+using Entity = app.Data.Entity;
+using app.Service.Base;
+using app.Core.Service;
+using app.Model.Service;
+using app.Model.Domain;
+using app.Core;
+using app.Common.Enums;
 
-namespace TS.EasyStockManager.Service.Transaction
+namespace app.Service.Transaction
 {
     public class TransactionService : BaseService, ITransactionService
     {

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace TS.EasyStockManager.Core.Repository
+namespace app.Core.Repository
 {
-    public interface IStoreStockRepository : IRepository<TS.EasyStockManager.Data.Entity.StoreStock>
+    public interface IStoreStockRepository : IRepository<Data.Entity.StoreStock>
     {
         Task RemoveByStoreAndProductId(int productId, int storeId);
-        Task<TS.EasyStockManager.Data.Entity.StoreStock> GetByStoreAndProductId(int productId, int storeId);
+        Task<Data.Entity.StoreStock> GetByStoreAndProductId(int productId, int storeId);
     }
 }

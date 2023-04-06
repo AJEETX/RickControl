@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using TS.EasyStockManager.Model.ViewModel.Base;
+﻿using System.ComponentModel.DataAnnotations;
+using app.Model.ViewModel.Base;
 
-namespace TS.EasyStockManager.Model.ViewModel.UnitOfMeasure
+namespace app.Model.ViewModel.UnitOfMeasure
 {
     public class CreateUnitOfMeasureViewModel: BaseViewModel
     {

@@ -1,17 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using app.Core.Repository;
+using app.Data.Context;
+using app.Repository.Base;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
-using TS.EasyStockManager.Core.Repository;
-using TS.EasyStockManager.Data.Context;
-using TS.EasyStockManager.Repository.Base;
 
-namespace TS.EasyStockManager.Repository.StoreStock
+namespace app.Repository.StoreStock
 {
-    public class StoreStockRepository : Repository<TS.EasyStockManager.Data.Entity.StoreStock>, IStoreStockRepository
+    public class StoreStockRepository : Repository<Data.Entity.StoreStock>, IStoreStockRepository
     {
-        private EasyStockManagerDbContext dbContext { get => _context as EasyStockManagerDbContext; }
+        private RiskControlDbContext dbContext { get => _context as RiskControlDbContext; }
         public StoreStockRepository(DbContext context) : base(context)
         {
         }
@@ -23,7 +20,7 @@ namespace TS.EasyStockManager.Repository.StoreStock
                 dbContext.StoreStock.Remove(entity);
         }
 
-        public async Task<TS.EasyStockManager.Data.Entity.StoreStock> GetByStoreAndProductId(int productId, int storeId)
+        public async Task<Data.Entity.StoreStock> GetByStoreAndProductId(int productId, int storeId)
         {
             var entity = await dbContext.StoreStock.FirstOrDefaultAsync(x => x.StoreId == storeId && x.ProductId == productId);
             return entity;

@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using app.Core.Service;
+using app.Model.Domain;
+using app.Model.Service;
+using app.Model.ViewModel.JsonResult;
+using app.Model.ViewModel.Report.StoreStock;
+using app.Model.ViewModel.Report.TransactionDetail;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using TS.EasyStockManager.Core.Service;
-using TS.EasyStockManager.Model.Domain;
-using TS.EasyStockManager.Model.Service;
-using TS.EasyStockManager.Model.ViewModel.JsonResult;
-using TS.EasyStockManager.Model.ViewModel.Report.StoreStock;
-using TS.EasyStockManager.Model.ViewModel.Report.TransactionDetail;
 
-namespace TS.EasyStockManager.Web.Controllers
+namespace app.Web.Controllers
 {
     public class ReportController : Controller
     {

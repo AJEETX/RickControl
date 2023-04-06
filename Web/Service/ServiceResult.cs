@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TS.EasyStockManager.Model.Service
+﻿namespace app.Model.Service
 {
     public partial class ServiceResult
     {

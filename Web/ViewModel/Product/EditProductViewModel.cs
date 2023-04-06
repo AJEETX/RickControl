@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using TS.EasyStockManager.Model.ViewModel.Base;
+using app.Model.ViewModel.Base;
 
-namespace TS.EasyStockManager.Model.ViewModel.Product
+namespace app.Model.ViewModel.Product
 {
     public class EditProductViewModel : BaseViewModel
     {

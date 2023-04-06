@@ -1,6 +1,4 @@
-using System;
-
-namespace TS.EasyStockManager.Web.Models
+namespace app.Web.Models
 {
     public class ErrorViewModel
     {

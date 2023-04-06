@@ -1,21 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using TS.EasyStockManager.Data.Configurations;
-using TS.EasyStockManager.Data.Entity;
-using TS.EasyStockManager.Data.Seed;
+﻿using app.Data.Entity;
+using Microsoft.EntityFrameworkCore;
+using app.Data.Seed;
+using app.Data.Configurations;
 
-namespace TS.EasyStockManager.Data.Context
+namespace app.Data.Context
 {
-    public class EasyStockManagerDbContext : DbContext
+    public class RiskControlDbContext : DbContext
     {
-        public EasyStockManagerDbContext(DbContextOptions<EasyStockManagerDbContext> options) : base(options)
+        public RiskControlDbContext(DbContextOptions<RiskControlDbContext> options) : base(options)
         {
         }
 
         public DbSet<Category> Category { get; set; }
         public DbSet<Product> Product { get; set; }
+        public DbSet<ClaimCase> Case { get; set; }
         public DbSet<Store> Store { get; set; }
         public DbSet<StoreStock> StoreStock { get; set; }
         public DbSet<Transaction> Transaction { get; set; }
@@ -41,6 +39,5 @@ namespace TS.EasyStockManager.Data.Context
             modelBuilder.ApplyConfiguration(new StoreSeed());
             modelBuilder.ApplyConfiguration(new ProductSeed());
         }
-
     }
 }

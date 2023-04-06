@@ -1,10 +1,7 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using TS.EasyStockManager.Core.UnitOfWorks;
+﻿using app.Core;
+using AutoMapper;
 
-namespace TS.EasyStockManager.Service.Base
+namespace app.Service.Base
 {
     public class BaseService
     {

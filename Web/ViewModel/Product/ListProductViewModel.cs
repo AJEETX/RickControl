@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TS.EasyStockManager.Model.ViewModel.Base;
-
-namespace TS.EasyStockManager.Model.ViewModel.Product
+﻿using app.Model.ViewModel.Base;
+namespace app.Model.ViewModel.Product
 {
     public class ListProductViewModel : BaseViewModel
     {
