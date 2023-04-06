@@ -16,10 +16,14 @@ namespace app.Model.ViewModel.Product
 
         [Display(Name = "Agency")]
         public int? CategoryId { get; set; }
-  
+
+        [Display(Name = "Status")]
+        public int? StatusId { get; set; }
+
         [Display(Name = "Unit Of Measure")]
         public int? UnitOfMeasureId { get; set; }
 
+        public IEnumerable<SelectListItem> StatusList { get; set; }
         public IEnumerable<SelectListItem> CategoryList { get; set; }
         public IEnumerable<SelectListItem> UnitOfMeasureList { get; set; }
     }

@@ -1,4 +1,5 @@
 ﻿using app.Data.Entity;
+using app.Domain;
 using app.Model.Domain;
 using app.Model.Service;
 using app.Model.ViewModel.Category;
@@ -116,6 +117,9 @@ namespace app.Mapper
             #endregion
 
             #region Entity & DTO
+            CreateMap<CaseStatus, CaseStatusDTO>();
+            CreateMap<CaseStatusDTO, CaseStatus>();
+
             CreateMap<Category, CategoryDTO>();
             CreateMap<CategoryDTO, Category>();
 
@@ -131,6 +135,7 @@ namespace app.Mapper
 
             CreateMap<Product, ProductDTO>()
                  .ForMember(dm => dm.CategoryName, vm => vm.MapFrom(vmf => vmf.Category != null ? vmf.Category.CategoryName : "-"))
+                 .ForMember(dm => dm.KYCCaseStatus, vm => vm.MapFrom(vmf => vmf.Status != null ? vmf.Status.Status.ToString() : "-"))
                  .ForMember(dm => dm.UnitOfMeasureName, vm => vm.MapFrom(vmf => vmf.UnitOfMeasure != null ? vmf.UnitOfMeasure.Isocode : "-"));
             CreateMap<ProductDTO, Product>();
 

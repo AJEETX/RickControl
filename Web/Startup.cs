@@ -4,6 +4,7 @@ using app.Core.Repository;
 using app.Core.Service;
 using app.Data.Context;
 using app.Repository.Base;
+using app.Service.CaseStatus;
 using app.Service.Category;
 using app.Service.Product;
 using app.Service.Store;
@@ -41,6 +42,7 @@ namespace app.Web
             services.AddAutoMapper(c => c.AddProfile<app.Mapper.MapProfile>(), typeof(Startup));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ICaseStatusService, CaseStatusService>();
             services.AddScoped<IUnitOfMeasureService, UnitOfMeasureService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IStoreService, StoreService>();

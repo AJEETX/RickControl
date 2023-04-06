@@ -14,6 +14,20 @@ namespace app.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Case",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Case", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Category",
                 columns: table => new
                 {
@@ -83,29 +97,6 @@ namespace app.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UnitOfMeasure", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Case",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    KYCCaseStatus = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Active = table.Column<bool>(type: "bit", nullable: false),
-                    OrganisationId = table.Column<int>(type: "int", nullable: true),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Case", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Case_Organisation_OrganisationId",
-                        column: x => x.OrganisationId,
-                        principalTable: "Organisation",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -181,11 +172,17 @@ namespace app.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: true),
                     UnitOfMeasureId = table.Column<int>(type: "int", nullable: false),
+                    StatusId = table.Column<int>(type: "int", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Product", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Product_Case_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "Case",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Product_Category_CategoryId",
                         column: x => x.CategoryId,
@@ -250,18 +247,32 @@ namespace app.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Case",
+                columns: new[] { "Id", "CreateDate", "Status" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(3240), 0 },
+                    { 2, new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(3243), 5 },
+                    { 3, new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(3245), 2 },
+                    { 4, new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(3248), 1 },
+                    { 5, new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(3250), 4 },
+                    { 6, new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(3253), 3 },
+                    { 7, new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(3255), 6 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Store",
                 columns: new[] { "Id", "CreateDate", "StoreCode", "StoreName" },
-                values: new object[] { 1, new DateTime(2023, 4, 6, 23, 22, 2, 820, DateTimeKind.Local).AddTicks(4979), "EX01", "Example Store" });
+                values: new object[] { 1, new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(2949), "EX01", "Example Store" });
 
             migrationBuilder.InsertData(
                 table: "TransactionType",
                 columns: new[] { "Id", "CreateDate", "TransactionTypeName" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 6, 23, 22, 2, 820, DateTimeKind.Local).AddTicks(4095), "Stock Receipt" },
-                    { 2, new DateTime(2023, 4, 6, 23, 22, 2, 820, DateTimeKind.Local).AddTicks(4142), "Stock Out" },
-                    { 3, new DateTime(2023, 4, 6, 23, 22, 2, 820, DateTimeKind.Local).AddTicks(4145), "Transfer" }
+                    { 1, new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(1863), "Stock Receipt" },
+                    { 2, new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(1912), "Stock Out" },
+                    { 3, new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(1915), "Transfer" }
                 });
 
             migrationBuilder.InsertData(
@@ -269,30 +280,30 @@ namespace app.Migrations
                 columns: new[] { "Id", "CreateDate", "Isocode", "UnitOfMeasureName" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 6, 23, 22, 2, 820, DateTimeKind.Local).AddTicks(4316), "pc", "Piece" },
-                    { 2, new DateTime(2023, 4, 6, 23, 22, 2, 820, DateTimeKind.Local).AddTicks(4324), "kg", "Kilogram" },
-                    { 3, new DateTime(2023, 4, 6, 23, 22, 2, 820, DateTimeKind.Local).AddTicks(4328), "m", "Meter" }
+                    { 1, new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(2139), "pc", "Piece" },
+                    { 2, new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(2146), "kg", "Kilogram" },
+                    { 3, new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(2151), "m", "Meter" }
                 });
 
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "CreateDate", "Email", "EmployeeType", "Name", "OrganisationId", "Password", "Surname" },
-                values: new object[] { 1, new DateTime(2023, 4, 6, 23, 22, 2, 820, DateTimeKind.Local).AddTicks(4904), "admin@admin.com", null, "Admin", null, "827ccb0eea8a706c4c34a16891f84e7b", "Admin" });
+                values: new object[] { 1, new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(2827), "admin@admin.com", null, "Admin", null, "827ccb0eea8a706c4c34a16891f84e7b", "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Product",
-                columns: new[] { "Id", "Barcode", "CategoryId", "CreateDate", "Description", "Image", "Price", "ProductName", "UnitOfMeasureId" },
-                values: new object[] { 1, "EX01", null, new DateTime(2023, 4, 6, 23, 22, 2, 820, DateTimeKind.Local).AddTicks(5040), null, null, 1m, "Example Product", 1 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Case_OrganisationId",
-                table: "Case",
-                column: "OrganisationId");
+                columns: new[] { "Id", "Barcode", "CategoryId", "CreateDate", "Description", "Image", "Price", "ProductName", "StatusId", "UnitOfMeasureId" },
+                values: new object[] { 1, "EX01", null, new DateTime(2023, 4, 7, 1, 23, 9, 965, DateTimeKind.Local).AddTicks(3016), null, null, 1m, "Example Product", null, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Product_CategoryId",
                 table: "Product",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_StatusId",
+                table: "Product",
+                column: "StatusId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Product_UnitOfMeasureId",
@@ -340,9 +351,6 @@ namespace app.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Case");
-
-            migrationBuilder.DropTable(
                 name: "StoreStock");
 
             migrationBuilder.DropTable(
@@ -359,6 +367,9 @@ namespace app.Migrations
 
             migrationBuilder.DropTable(
                 name: "Organisation");
+
+            migrationBuilder.DropTable(
+                name: "Case");
 
             migrationBuilder.DropTable(
                 name: "Category");

@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using app.Core.Service;
+using app.Data.Entity;
+using app.Domain;
 using app.Model.Domain;
 using app.Model.Service;
 using app.Model.ViewModel.JsonResult;
 using app.Model.ViewModel.Product;
+using app.Service;
 using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -20,17 +24,20 @@ namespace app.Web.Controllers
         private readonly IMapper _mapper;
         private readonly ICategoryService _categoryService;
         private readonly IUnitOfMeasureService _unitOfMeasureService;
+        private readonly ICaseStatusService claimCaseService;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
         public ProductController(IProductService productService,
                                  ICategoryService categoryService,
                                  IUnitOfMeasureService unitOfMeasureService,
+                                 ICaseStatusService claimCaseService,
                                  IWebHostEnvironment webHostEnvironment,
                                  IMapper mapper)
         {
             _productService = productService;
             _categoryService = categoryService;
             _unitOfMeasureService = unitOfMeasureService;
+            this.claimCaseService = claimCaseService;
             _webHostEnvironment = webHostEnvironment;
             _mapper = mapper;
         }
@@ -38,6 +45,7 @@ namespace app.Web.Controllers
         {
             SearchProductViewModel model = new SearchProductViewModel();
             model.CategoryList = await GetCategoryList();
+            model.StatusList = await GetStatusList();
             model.UnitOfMeasureList = await GetUnitOfMeasureList();
             return View(model);
         }
@@ -45,6 +53,7 @@ namespace app.Web.Controllers
         {
             CreateProductViewModel model = new CreateProductViewModel();
             model.CategoryList = await GetCategoryList();
+            model.StatusList = await GetStatusList();
             model.UnitOfMeasureList = await GetUnitOfMeasureList();
             return View(model);
         }
@@ -195,6 +204,13 @@ namespace app.Web.Controllers
         {
             ServiceResult<IEnumerable<CategoryDTO>> serviceResult = await _categoryService.GetAll();
             IEnumerable<SelectListItem> drpCategoryList = _mapper.Map<IEnumerable<SelectListItem>>(serviceResult.TransactionResult);
+            return drpCategoryList;
+        }
+
+        private async Task<IEnumerable<SelectListItem>> GetStatusList()
+        {
+            ServiceResult<IEnumerable<CaseStatusDTO>> serviceResult = await claimCaseService.GetAll();
+            IEnumerable<SelectListItem> drpCategoryList = serviceResult.TransactionResult.Select(s => new SelectListItem { Text = s.ClaimStatus.ToString(), Value = s.ClaimStatus.ToString() });
             return drpCategoryList;
         }
         private async Task<IEnumerable<SelectListItem>> GetUnitOfMeasureList()

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using app.Model.ViewModel.Base;
+using app.Data.Entity;
 
 namespace app.Model.ViewModel.Product
 {
@@ -37,6 +38,10 @@ namespace app.Model.ViewModel.Product
         [Required]
         [Display(Name = "Unit Of Measure")]
         public int UnitOfMeasureId { get; set; }
+        [Display(Name = "Status")]
+        public int? StatusId { get; set; }
+
+        public IEnumerable<SelectListItem> StatusList { get; set; }
 
         public IEnumerable<SelectListItem> CategoryList { get; set; }
         public IEnumerable<SelectListItem> UnitOfMeasureList { get; set; }

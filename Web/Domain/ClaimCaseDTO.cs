@@ -7,7 +7,7 @@ namespace app.Domain
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public KYCCaseStatus KYCCaseStatus { get; set; }
+        public CaseStatus KYCCaseStatus { get; set; }
         public string Description { get; set; }
         public bool Active { get; set; }
         public DateTime? RecordCreatedOn { get; set; }

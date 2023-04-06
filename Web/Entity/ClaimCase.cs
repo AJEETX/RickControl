@@ -2,26 +2,22 @@
 
 namespace app.Data.Entity
 {
-    public class ClaimCase : BaseEntity
+ 
+    public class CaseStatus : BaseEntity
     {
-        [Required]
-        [Display(Name = "Name")]
-        public string Name { get; set; }
-        public KYCCaseStatus KYCCaseStatus { get; set; }
-        [DataType(DataType.MultilineText)]
-        public string Description { get; set; }
-        public bool Active { get; set; }
-        public Organisation? Organisation { get; set; }
 
+        public ClaimStatus Status { get; set; }
+ 
     }
-
-    public enum KYCCaseStatus
+    public enum ClaimStatus
     {
         CREATED,
         ASSIGNED,
         CLOSED,
         PENDING,
-        INVESTIGATING
+        INVESTIGATING,
+        REJECTED,
+        APPROVED
     }
     public class Organisation : BaseEntity
     {

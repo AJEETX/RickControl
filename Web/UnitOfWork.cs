@@ -34,6 +34,7 @@ namespace app.Core
         private ITransactionTypeRepository iTransactionTypeRepository;
         private IUnitOfMeasureRepository iUnitOfMeasureRepository;
         private IUserRepository iUserRepository;
+        private IClaimStatusRepository iClaimStatusRepository;
 
         public IProductRepository ProductRepository
         {
@@ -119,6 +120,16 @@ namespace app.Core
                 if (iUserRepository == null)
                     iUserRepository = new UserRepository(_context);
                 return iUserRepository;
+            }
+        }
+
+        public IClaimStatusRepository ClaimStatusRepository
+        {
+            get
+            {
+                if (iClaimStatusRepository == null)
+                    iClaimStatusRepository = new ClaimStatusRepository(_context);
+                return iClaimStatusRepository;
             }
         }
 

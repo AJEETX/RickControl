@@ -9,6 +9,7 @@
         public decimal? Price { get; set; }
         public int? CategoryId { get; set; }
         public string CategoryName { get; set; }
+        public string KYCCaseStatus  { get; set; }
         public int? UnitOfMeasureId { get; set; }
         public string UnitOfMeasureName { get; set; }
 
