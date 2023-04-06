@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<app.Data.Entity.ClaimCase>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Claim cases";
 }
 
 <h1>Index</h1>
@@ -57,3 +57,11 @@
 }
     </tbody>
 </table>
+
+@section style{
+    <partial name="~/Views/Shared/_DataTableStylePartial.cshtml" />
+}
+@section script{
+    <partial name="~/Views/Shared/_DataTableScriptPartial.cshtml" />
+    <script src="~/pages/category/category-list.js"></script>
+}

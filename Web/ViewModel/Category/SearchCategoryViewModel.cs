@@ -6,7 +6,7 @@ namespace app.Model.ViewModel.Category
     public class SearchCategoryViewModel: BaseViewModel
     {
 
-        [Display(Name = "Category Name")]
+        [Display(Name = "Agency Name")]
         public string CategoryName { get; set; }
 
     }

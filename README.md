@@ -1,7 +1,7 @@
-# TSEasyStockManagment
-Asp.Net Core MVC - Product Stock Management 
+# RiskControlManagment
+Asp.Net Core MVC - Risk COntrol Management 
 
-TSEasyStockManagement is ASP.NET Core (3.1), C#, EF code first web applications that help you to manage your all stock item.
+RiskControlManagment is ASP.NET Core (3.1), C#, EF code first web applications that help you to manage your `case verification` process.
 
 ![Capture0004](https://user-images.githubusercontent.com/4595323/129177061-fb8aee44-16bb-4eeb-9d5e-22fa708e799c.PNG)
 
@@ -29,7 +29,7 @@ TSEasyStockManagement is ASP.NET Core (3.1), C#, EF code first web applications 
 
 ![Capture0003](https://user-images.githubusercontent.com/4595323/129191500-15c7fbfe-ed27-420a-91dd-2cfa5724cc89.PNG)
 
-- Step 5: Open Package Manager Console and Select Default Project "TS.EasyStockManager.Data".<br>
+- Step 5: Open Package Manager Console and Select Default Project "app".<br>
 Run Code <br>
 `Add-Migration CreateDB` <br>
 `update-database`

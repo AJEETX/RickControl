@@ -7,7 +7,7 @@ namespace app.Model.ViewModel.Category
     {
         [Required]
         [MaxLength(30)]
-        [Display(Name = "Category Name")]
+        [Display(Name = "Agency Name")]
         public string CategoryName { get; set; }
     }
 }

@@ -10,11 +10,11 @@ namespace app.Model.ViewModel.Product
     {
         [Required]
         [MaxLength(100)]
-        [Display(Name = "Product Name")]
+        [Display(Name = "Claim case  Name")]
         public string ProductName { get; set; }
 
         [MaxLength(50)]
-        [Display(Name = "Barcode")]
+        [Display(Name = "code")]
         public string Barcode { get; set; }
 
         [Display(Name = "Description")]
@@ -31,7 +31,7 @@ namespace app.Model.ViewModel.Product
         [Display(Name = "Price")]
         public decimal? Price { get; set; }
 
-        [Display(Name = "Category")]
+        [Display(Name = "Agency")]
         public int? CategoryId { get; set; }
 
         [Required]

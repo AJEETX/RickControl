@@ -1,6 +1,6 @@
 ﻿@model app.Model.ViewModel.Product.SearchProductViewModel
 @{
-    ViewData["Title"] = "Product List";
+    ViewData["Title"] = "Case List";
 }
 
 <section class="content pt-2">
@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="card card-secondary">
                     <div class="card-header">
-                        <h3 class="card-title">User Filter</h3>
+                        <h3 class="card-title">Search</h3>
                     </div>
                     <div class="card-body dataTable-search-form">
                         <div class="row">
@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <label asp-for="CategoryId"></label>
                                     <select asp-for="CategoryId" class="form-control form-control-sm" asp-items="Model.CategoryList">
-                                        <option value="">Select Category</option>
+                                        <option value="">Select Agency</option>
                                     </select>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                             <div class="col-md-12 text-right">
                                 <button id="btnClear" type="button" class="btn btn-secondary btn-sm"><i class="fas fa-sync-alt"></i> Clear</button>
                                 <button id="btnFilter" type="button" class="btn btn-primary btn-sm"><i class="fas fa-search"></i> Filter</button>
-                                <a class="btn btn-info btn-sm" href="/Product/Create"><i class="fas fa-plus"></i> Create Product</a>
+                                <a class="btn btn-info btn-sm" href="/Product/Create"><i class="fas fa-plus"></i> Create Case</a>
                             </div>
                         </div>
                     </div>
@@ -58,34 +58,23 @@
             <div class="col-12">
                 <div class="card card-secondary">
                     <div class="card-header">
-                        <h3 class="card-title">User List</h3>
+                        <h3 class="card-title">Claim case List</h3>
                     </div>
                     <div class="card-body">
                         <table id="datatable" class="table table-bordered table-hover dt-responsive nowrap w-100">
                             <thead>
                                 <tr>
                                     <th>Image</th>
-                                    <th>Product Name</th>
+                                    <th>Claim Name</th>
                                     <th>Barcode</th>
                                     <th>Price</th>
-                                    <th>Category</th>
+                                    <th>Agency</th>
                                     <th>Unit Of Measure</th>
                                     <th style="width:15%">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Image</th>
-                                    <th>Product Name</th>
-                                    <th>Barcode</th>
-                                    <th>Price</th>
-                                    <th>Category</th>
-                                    <th>Unit Of Measure</th>
-                                    <th style="width:15%">Actions</th>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                 </div>

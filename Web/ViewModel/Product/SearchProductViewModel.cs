@@ -8,13 +8,13 @@ namespace app.Model.ViewModel.Product
     public class SearchProductViewModel : BaseViewModel
     {
       
-        [Display(Name = "Product Name")]
+        [Display(Name = "Claim case Name")]
         public string ProductName { get; set; }
  
-        [Display(Name = "Barcode")]
+        [Display(Name = "code")]
         public string Barcode { get; set; }
 
-        [Display(Name = "Category")]
+        [Display(Name = "Agency")]
         public int? CategoryId { get; set; }
   
         [Display(Name = "Unit Of Measure")]
