@@ -7,13 +7,13 @@ namespace app.Model.ViewModel.UnitOfMeasure
     {
         [Required]
         [MaxLength(30)]
-        [Display(Name = "Unit of Measure Name")]
+        [Display(Name = "Case type Name")]
         public string UnitOfMeasureName { get; set; }
 
 
         [Required]
         [MaxLength(3)]
-        [Display(Name = "Unit of Measure Short Code")]
+        [Display(Name = "Case type Short Code")]
         public string Isocode { get; set; }
     }
 }

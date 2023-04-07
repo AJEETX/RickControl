@@ -73,14 +73,8 @@ namespace app.Web.Controllers
                     model.ImageFile.CopyTo(new FileStream(upload, FileMode.Create));
                     model.Image = newFileName;
                 }
-                if (model.CategoryId != null)
-                {
-                    model.Status = Status.CREATED.ToString();
-                }
-                else
-                {
-                    model.Status = Status.ASSIGNED.ToString();
-                }
+                model.Status = Status.CREATED.ToString();
+
                 ProductDTO productDTO = _mapper.Map<ProductDTO>(model);
                 var serviceResult = await _productService.AddAsync(productDTO);
                 jsonResultModel = _mapper.Map<JsonResultModel>(serviceResult);

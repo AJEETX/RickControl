@@ -20,7 +20,7 @@ namespace app.Model.ViewModel.Product
         [Display(Name = "Status")]
         public string Status { get; set; }
 
-        [Display(Name = "Unit Of Measure")]
+        [Display(Name = "Case type")]
         public int? UnitOfMeasureId { get; set; }
 
         public IEnumerable<SelectListItem> StatusList { get; set; }
