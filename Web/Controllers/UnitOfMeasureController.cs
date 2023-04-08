@@ -44,6 +44,11 @@ namespace app.Web.Controllers
                 UnitOfMeasureDTO unitOfMeasureDTO = _mapper.Map<UnitOfMeasureDTO>(model);
                 var serviceResult = await _unitOfMeasureService.AddAsync(unitOfMeasureDTO);
                 jsonResultModel = _mapper.Map<JsonResultModel>(serviceResult);
+                if (jsonResultModel.IsSucceeded)
+                {
+                    jsonResultModel.IsRedirect = true;
+                    jsonResultModel.RedirectUrl = "/UnitOfMeasure";
+                }
             }
             catch (Exception ex)
             {

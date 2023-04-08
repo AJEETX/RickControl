@@ -40,7 +40,7 @@ $(document).ready(function () {
                     "sDefaultContent": "",
                     "bSortable": false,
                     "mRender": function (data, type, row) {
-                        var img = '<img src="' + row.ImageDisplay + '" src height="60" />';
+                        var img = '<img src="upload/' + row.ImageDisplay + '" src height="60" alt="No image" />';
                         return img;
                     }
                 },

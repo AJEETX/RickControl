@@ -43,6 +43,11 @@ namespace app.Web.Controllers
                 StoreDTO storeDTO = _mapper.Map<StoreDTO>(model);
                 var serviceResult = await _storeService.AddAsync(storeDTO);
                 jsonResultModel = _mapper.Map<JsonResultModel>(serviceResult);
+                if (jsonResultModel.IsSucceeded)
+                {
+                    jsonResultModel.IsRedirect = true;
+                    jsonResultModel.RedirectUrl = "/Store";
+                }
             }
             catch (Exception ex)
             {

@@ -44,6 +44,11 @@ namespace app.Web.Controllers
                 CategoryDTO categoryDTO = _mapper.Map<CategoryDTO>(model);
                 var serviceResult = await _categoryService.AddAsync(categoryDTO);
                 jsonResultModel = _mapper.Map<JsonResultModel>(serviceResult);
+                if (jsonResultModel.IsSucceeded)
+                {
+                    jsonResultModel.IsRedirect = true;
+                    jsonResultModel.RedirectUrl = "/Category";
+                }
             }
             catch (Exception ex)
             {

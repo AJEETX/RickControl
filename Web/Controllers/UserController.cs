@@ -61,6 +61,11 @@ namespace app.Web.Controllers
                 };
                 var serviceResult = await _userService.AddAsync(userDTO);
                 jsonResultModel = _mapper.Map<JsonResultModel>(serviceResult);
+                if (jsonResultModel.IsSucceeded)
+                {
+                    jsonResultModel.IsRedirect = true;
+                    jsonResultModel.RedirectUrl = "/User";
+                }
             }
             catch (Exception ex)
             {

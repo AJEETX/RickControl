@@ -4,7 +4,6 @@ using app.Core.Repository;
 using app.Core.Service;
 using app.Data.Context;
 using app.Repository.Base;
-using app.Repository.Employee;
 using app.Service.CaseStatus;
 using app.Service.Category;
 using app.Service.Employee;

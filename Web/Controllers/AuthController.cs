@@ -45,7 +45,7 @@ namespace app.Web.Controllers
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
                     jsonResultModel.IsSucceeded = true;
                     jsonResultModel.IsRedirect = true;
-                    jsonResultModel.RedirectUrl = "/home";
+                    jsonResultModel.RedirectUrl = "/Product";
                 }
                 else
                 {

@@ -73,11 +73,23 @@ namespace app.Web.Controllers
                     model.ImageFile.CopyTo(new FileStream(upload, FileMode.Create));
                     model.Image = newFileName;
                 }
-                model.Status = Status.CREATED.ToString();
+                if(model?.CategoryId != null && model.CategoryId > 0)
+                {
+                    model.Status = Status.ASSIGNED.ToString();
+                }
+                else
+                {
+                    model.Status = Status.CREATED.ToString();
+                }
 
                 ProductDTO productDTO = _mapper.Map<ProductDTO>(model);
                 var serviceResult = await _productService.AddAsync(productDTO);
                 jsonResultModel = _mapper.Map<JsonResultModel>(serviceResult);
+                if (jsonResultModel.IsSucceeded)
+                {
+                    jsonResultModel.IsRedirect = true;
+                    jsonResultModel.RedirectUrl = "/Product";
+                }
             }
             catch (Exception ex)
             {
@@ -115,7 +127,14 @@ namespace app.Web.Controllers
                     var upload = Path.Combine(_webHostEnvironment.WebRootPath, "upload", newFileName);
                     model.ImageFile.CopyTo(new FileStream(upload, FileMode.Create));
                     model.Image = newFileName;
-
+                }
+                if(model?.CategoryId != null && model.CategoryId > 0)
+                {
+                    model.Status = Status.ASSIGNED.ToString();
+                }
+                else
+                {
+                    model.Status = Status.CREATED.ToString();
                 }
                 ProductDTO productDTO = _mapper.Map<ProductDTO>(model);
                 var serviceResult = await _productService.Update(productDTO);
@@ -152,7 +171,7 @@ namespace app.Web.Controllers
                         Barcode = l.Barcode,
                         CategoryName = l.CategoryName,
                         Id = l.Id.Value,
-                        ImageDisplay = l.Image,
+                        ImageDisplay = l.Image ?? "no-image.PNG",
                         Price = l.Price?.ToString(),
                         ProductName = l.ProductName,
                         Status = l.Status,
