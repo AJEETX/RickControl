@@ -1,6 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using app.Data.Entity;
 using app.Model.ViewModel.Base;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace app.Model.ViewModel.User
 {
@@ -27,7 +29,12 @@ namespace app.Model.ViewModel.User
         [Display]
         public string Surname { get; set; }
 
-        public Organisation? Organisation { get; set; }
-        public EmployeeType? EmployeeType { get; set; }
+        [Display(Name = "Employee type")]
+        public int? EmployeeTypeId {get; set;}
+        [Display(Name = "Company name")]
+        public int? OrganisationId { get; set; }
+        public IEnumerable<SelectListItem> OrganizationList { get; set; }
+        public IEnumerable<SelectListItem> EmployeeTypeList { get; set; }
+
     }
 }

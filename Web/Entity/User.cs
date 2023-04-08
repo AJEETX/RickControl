@@ -6,7 +6,8 @@
         public string Password { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public Organisation? Organisation { get; set; }
+        public int? OrganisationId { get; set; } = default!;
+        public Organisation? Organisation { get; set; } = default!;
         public EmployeeType? EmployeeType { get; set; }
 
     }

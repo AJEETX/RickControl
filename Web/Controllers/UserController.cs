@@ -8,6 +8,7 @@ using app.Model.ViewModel.JsonResult;
 using app.Model.ViewModel.User;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace app.Web.Controllers
 {
@@ -30,7 +31,11 @@ namespace app.Web.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            Console.WriteLine("hi!!!!!!!!");
+            var model = new CreateUserViewModel();
+            model.EmployeeTypeList = new List<SelectListItem>{new SelectListItem("A1",  "Permanent"), new SelectListItem("B1",  "Contract")};
+            model.OrganizationList = new List<SelectListItem>{new SelectListItem("C1",  "Company1"), new SelectListItem("C2",  "Company2")};
+            return View(model);
         }
 
         [HttpPost]

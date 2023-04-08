@@ -7,5 +7,7 @@ namespace app.Model.ViewModel.User
         public string Email { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public string EmployeeType { get; set; }
+        public string CompanyName { get; set; }
     }
 }

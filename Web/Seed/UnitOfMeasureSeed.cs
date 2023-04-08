@@ -9,9 +9,9 @@ namespace app.Data.Seed
     {
         public void Configure(EntityTypeBuilder<UnitOfMeasure> builder)
         {
-            builder.HasData(new UnitOfMeasure { Id = 1, UnitOfMeasureName = "Comprehensive", Isocode = "Comprehensive", CreateDate = DateTime.Now });
-            builder.HasData(new UnitOfMeasure { Id = 2, UnitOfMeasureName = "Non-Comprehensive", Isocode = "Non-Comprehensive", CreateDate = DateTime.Now });
-            builder.HasData(new UnitOfMeasure { Id = 3, UnitOfMeasureName = "Other", Isocode = "Other", CreateDate = DateTime.Now });
+            builder.HasData(new UnitOfMeasure { Id = 1, UnitOfMeasureName = "Comprehensive", Isocode = "CC", CreateDate = DateTime.Now });
+            builder.HasData(new UnitOfMeasure { Id = 2, UnitOfMeasureName = "Non-Comprehensive", Isocode = "NC", CreateDate = DateTime.Now });
+            builder.HasData(new UnitOfMeasure { Id = 3, UnitOfMeasureName = "Other", Isocode = "OC", CreateDate = DateTime.Now });
         }
     }
 }

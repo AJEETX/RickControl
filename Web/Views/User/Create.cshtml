@@ -34,7 +34,21 @@
                                 <label asp-for="Surname"></label>
                                 <input asp-for="Surname" type="text" class="form-control">
                                 <span asp-validation-for="Surname" class="text-danger"></span>
+                            </div>                              
+                            <div class="form-group">
+                                <label asp-for="EmployeeTypeId"></label>
+                                <select asp-for="EmployeeTypeId" class="form-control" asp-items="Model.EmployeeTypeList">
+                                    <option value="">Select Employee type</option>
+                                </select>
+                                <span asp-validation-for="EmployeeTypeId" class="text-danger"></span>
                             </div>
+                            <div class="form-group">
+                                <label asp-for="OrganisationId"></label>
+                                <select asp-for="OrganisationId" class="form-control" asp-items="Model.OrganizationList">
+                                    <option value="">Select company</option>
+                                </select>
+                                <span asp-validation-for="OrganisationId" class="text-danger"></span>
+                            </div>                                                    
                         </div>
                         <div class="card-footer text-right">
                             <a class="btn btn-default" href="/User">Back</a>
