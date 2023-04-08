@@ -10,6 +10,7 @@ namespace app.Model.Domain
         public string Surname { get; set; }
         public string StoreName { get; set; }
         public int StoreId { get; set; }
-        public EmployeeType? EmployeeType { get; set; } = default!;
+        public int? EmployeeTypeId { get; set; } 
+        public string EmployeeType { get; set; }
     }
 }

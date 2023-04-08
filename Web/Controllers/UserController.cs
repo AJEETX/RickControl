@@ -28,9 +28,11 @@ namespace app.Web.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var model = new SearchUserViewModel();
+            model.EmployeeTypeList = await GetEmployeeTypeList() ;
+            model.CompanyList = await GetCompanyList();
             return View(model);
         }
 
@@ -49,7 +51,14 @@ namespace app.Web.Controllers
             JsonResultModel jsonResultModel = new JsonResultModel();
             try
             {
-                UserDTO userDTO = _mapper.Map<UserDTO>(model);
+                UserDTO userDTO = new UserDTO{ 
+                    Email = model.Email,
+                    Password = model.Password,
+                    Name = model.Surname,
+                    Surname = model.Surname,
+                    StoreId = model.StoreId,
+                    EmployeeTypeId = model.EmployeeTypeId,
+                };
                 var serviceResult = await _userService.AddAsync(userDTO);
                 jsonResultModel = _mapper.Map<JsonResultModel>(serviceResult);
             }
@@ -66,6 +75,8 @@ namespace app.Web.Controllers
         {
             var serviceResult = await _userService.GetById(id);
             EditUserViewModel model = _mapper.Map<EditUserViewModel>(serviceResult.TransactionResult);
+            model.CompanyList = await GetCompanyList();
+            model.EmployeeTypeList = await GetEmployeeTypeList();
             return View(model);
         }
 
@@ -107,11 +118,12 @@ namespace app.Web.Controllers
                 if (serviceCountResult.IsSucceeded && serviceListResult.IsSucceeded)
                 {
                     List<ListUserViewModel> listVM = serviceListResult.TransactionResult.Select(l => new ListUserViewModel{
-                         Email = l.Email,
-                         Name = l.Name,
-                         Surname = l.Surname,
-                         EmployeeType = l.EmployeeType?.ToString(),
-                         CompanyName = l.StoreName
+                        Id =(int) l.Id,
+                        Email = l.Email,
+                        Name = l.Name,
+                        Surname = l.Surname,
+                        EmployeeType = l.EmployeeType?.ToString(),
+                        CompanyName = l.StoreName
                     }).ToList();
                     jsonDataTableModel.aaData = listVM;
                     jsonDataTableModel.iTotalDisplayRecords = serviceCountResult.TransactionResult;
@@ -151,7 +163,7 @@ namespace app.Web.Controllers
         private async Task<IEnumerable<SelectListItem>> GetCompanyList()
         {
             ServiceResult<IEnumerable<StoreDTO>> serviceResult = await _storeService.GetAll();
-            IEnumerable<SelectListItem> drpCompanyList = serviceResult.TransactionResult.Select(s => new SelectListItem { Text = s.StoreName, Value = s.StoreCode });
+            IEnumerable<SelectListItem> drpCompanyList = serviceResult.TransactionResult.Select(s => new SelectListItem { Text = s.StoreName, Value = s.Id.ToString() });
             return drpCompanyList;
         }
 

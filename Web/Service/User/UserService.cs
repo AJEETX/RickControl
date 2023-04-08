@@ -10,6 +10,7 @@ using app.Model.Service;
 using app.Model.Domain;
 using app.Core;
 using app.Common.Extensions;
+using System.Linq;
 
 namespace app.Service.User
 {
@@ -32,7 +33,7 @@ namespace app.Service.User
                         Entity.User entity = _mapper.Map<Data.Entity.User>(model);
                         entity.Password = model.Password.MD5Hash();
                         entity.CreateDate = DateTime.Now;
-                        entity.EmployeeType = model.EmployeeType;
+                        entity.EmployeeTypeId = model.EmployeeTypeId;
                         entity.StoreId = model.StoreId;
 
                         await _unitOfWork.UserRepository.AddAsync(entity);
@@ -67,11 +68,20 @@ namespace app.Service.User
                                                                 .FindAsync(filter: x => (string.IsNullOrEmpty(criteria.Email) || x.Email.Contains(criteria.Email)) &&
                                                                                         (string.IsNullOrEmpty(criteria.Name) || x.Name.Contains(criteria.Name)) &&
                                                                                         (string.IsNullOrEmpty(criteria.Surname) || x.Surname.Contains(criteria.Surname)),
+                                                                           includes: new List<string>() { "Store", "EmployeeType" },
                                                                            orderByDesc: x => x.Id,
                                                                            skip: criteria.PageNumber,
                                                                            take: criteria.RecordCount);
 
-                    result.TransactionResult = _mapper.Map<IEnumerable<UserDTO>>(list);
+                    result.TransactionResult = list.Select(l => new UserDTO{
+                        Id = l.Id,
+                        Email = l.Email,
+                        Password = l.Password,
+                        Name = l.Surname,
+                        Surname = l.Surname,
+                        StoreName = l.Store?.StoreName,
+                        EmployeeType = l.EmployeeType.Name,
+                    });
                 }
             }
             catch (Exception ex)

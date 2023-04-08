@@ -17,5 +17,12 @@ namespace app.Model.ViewModel.User
 
         [Display]
         public string Surname { get; set; }
+        [Display(Name = "Employee type")]
+        public int? EmployeeTypeId {get; set;}
+        [Display(Name = "Company name")]
+        public int StoreId { get; set; }
+        
+        public IEnumerable<SelectListItem> CompanyList { get; set; }
+        public IEnumerable<SelectListItem> EmployeeTypeList { get; set; }
     }
 }

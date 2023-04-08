@@ -15,7 +15,9 @@ $(document).ready(function () {
                 { "name": "returnformat", "value": "plain" },
                 { "name": "Email", "value": $('input[name="Email"]').val() },
                 { "name": "Name", "value": $('input[name="Name"]').val() },
-                { "name": "Surname", "value": $('input[name="Surname"]').val() }
+                { "name": "Surname", "value": $('input[name="Surname"]').val() },
+                { "name": "EmployeeTypeId", "value": $('select[name="EmployeeTypeId"]').val() },
+                { "name": "StoreId", "value": $('select[name="StoreId"]').val() }
             );
             $.ajax({
                 "dataType": 'json',
@@ -43,12 +45,12 @@ $(document).ready(function () {
                 {
                     mDataProp: "Surname"
                 },
-                // {
-                //     mDataProp: "Company Name"
-                // },,
-                // {
-                //     mDataProp: "Employee Type"
-                // },
+                {
+                    mDataProp: "CompanyName"
+                },
+                {
+                    mDataProp: "EmployeeType"
+                },
                 {
                     "sDefaultContent": "",
                     "bSortable": false,

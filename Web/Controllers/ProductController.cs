@@ -159,7 +159,6 @@ namespace app.Web.Controllers
                         UnitOfMeasureName = l.UnitOfMeasureName,
 
                     }).ToList();
-                    //List<ListProductViewModel> listVM = _mapper.Map<List<ListProductViewModel>>(serviceListResult.TransactionResult);
                     jsonDataTableModel.aaData = listVM;
                     jsonDataTableModel.iTotalDisplayRecords = serviceCountResult.TransactionResult;
                     jsonDataTableModel.iTotalRecords = serviceCountResult.TransactionResult;
