@@ -11,7 +11,7 @@ namespace app.Model.ViewModel.Product
         [Display(Name = "Claim case Name")]
         public string ProductName { get; set; }
  
-        [Display(Name = "code")]
+        [Display(Name = "Case code")]
         public string Barcode { get; set; }
 
         [Display(Name = "Agency")]

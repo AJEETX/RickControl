@@ -28,14 +28,14 @@ namespace app.Web.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = new SearchUserViewModel();
+            return View(model);
         }
 
         public async Task<IActionResult> Create()
         {
-            Console.WriteLine("hi!!!!!!!!");
             var model = new CreateUserViewModel();
             model.EmployeeTypeList = await GetEmployeeTypeList() ;
             model.CompanyList = await GetCompanyList();

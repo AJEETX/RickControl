@@ -43,12 +43,12 @@ $(document).ready(function () {
                 {
                     mDataProp: "Surname"
                 },
-                {
-                    mDataProp: "CompanyName"
-                },,
-                {
-                    mDataProp: "EmployeeType"
-                },
+                // {
+                //     mDataProp: "Company Name"
+                // },,
+                // {
+                //     mDataProp: "Employee Type"
+                // },
                 {
                     "sDefaultContent": "",
                     "bSortable": false,

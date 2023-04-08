@@ -17,10 +17,5 @@ namespace app.Model.ViewModel.User
 
         [Display]
         public string Surname { get; set; }
-        public int StoreId { get; set; }
-        public int? EmployeeTypeId {get; set;}
-        
-        public IEnumerable<SelectListItem> CompanyList { get; set; }
-        public IEnumerable<SelectListItem> EmployeeTypeList { get; set; }
     }
 }

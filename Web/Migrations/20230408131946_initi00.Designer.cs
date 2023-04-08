@@ -12,8 +12,8 @@ using app.Data.Context;
 namespace app.Migrations
 {
     [DbContext(typeof(RiskControlDbContext))]
-    [Migration("20230408111911_initi1")]
-    partial class initi1
+    [Migration("20230408131946_initi00")]
+    partial class initi00
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,43 +47,43 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 572, DateTimeKind.Local).AddTicks(3402),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(9438),
                             Status = "CREATED"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 572, DateTimeKind.Local).AddTicks(3436),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(9480),
                             Status = "REJECTED"
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 572, DateTimeKind.Local).AddTicks(3438),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(9485),
                             Status = "CLOSED"
                         },
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 572, DateTimeKind.Local).AddTicks(3441),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(9490),
                             Status = "ASSIGNED"
                         },
                         new
                         {
                             Id = 5,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 572, DateTimeKind.Local).AddTicks(3443),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(9495),
                             Status = "INVESTIGATING"
                         },
                         new
                         {
                             Id = 6,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 572, DateTimeKind.Local).AddTicks(3445),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(9499),
                             Status = "PENDING"
                         },
                         new
                         {
                             Id = 7,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 572, DateTimeKind.Local).AddTicks(3448),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(9504),
                             Status = "APPROVED"
                         });
                 });
@@ -131,13 +131,13 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 572, DateTimeKind.Local).AddTicks(3732),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(9974),
                             Name = "Permanent"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 572, DateTimeKind.Local).AddTicks(3737),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(9984),
                             Name = "Contract"
                         });
                 });
@@ -197,7 +197,7 @@ namespace app.Migrations
                         {
                             Id = 1,
                             Barcode = "EX01",
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 571, DateTimeKind.Local).AddTicks(6764),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(2676),
                             Price = 1m,
                             ProductName = "Example Product",
                             Status = "CREATED",
@@ -235,7 +235,7 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 571, DateTimeKind.Local).AddTicks(6492),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(2549),
                             StoreCode = "EX01",
                             StoreName = "Example Company"
                         });
@@ -342,19 +342,19 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 571, DateTimeKind.Local).AddTicks(4915),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(313),
                             TransactionTypeName = "Stock Receipt"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 571, DateTimeKind.Local).AddTicks(4976),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(417),
                             TransactionTypeName = "Stock Out"
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 571, DateTimeKind.Local).AddTicks(4979),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(421),
                             TransactionTypeName = "Transfer"
                         });
                 });
@@ -388,21 +388,21 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 571, DateTimeKind.Local).AddTicks(5304),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(827),
                             Isocode = "CC",
                             UnitOfMeasureName = "Comprehensive"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 571, DateTimeKind.Local).AddTicks(5316),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(841),
                             Isocode = "NC",
                             UnitOfMeasureName = "Non-Comprehensive"
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 571, DateTimeKind.Local).AddTicks(5322),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(848),
                             Isocode = "OC",
                             UnitOfMeasureName = "Other"
                         });
@@ -464,7 +464,7 @@ namespace app.Migrations
                         {
                             Id = 1,
                             Active = false,
-                            CreateDate = new DateTime(2023, 4, 8, 21, 19, 11, 571, DateTimeKind.Local).AddTicks(6336),
+                            CreateDate = new DateTime(2023, 4, 8, 23, 19, 46, 556, DateTimeKind.Local).AddTicks(2265),
                             Email = "admin@admin.com",
                             EmployeeTypeId = 1,
                             Name = "Admin",
