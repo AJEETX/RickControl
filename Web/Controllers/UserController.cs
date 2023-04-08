@@ -28,7 +28,7 @@ namespace app.Web.Controllers
             _mapper = mapper;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var model = new SearchUserViewModel();
             return View(model);
