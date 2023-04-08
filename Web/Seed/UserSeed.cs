@@ -19,8 +19,8 @@ namespace app.Data.Seed
                 Surname = "Admin",
                 Password = adminPassword.MD5Hash(),
                 CreateDate = DateTime.Now,
-                // Organisation = new app.Data.Entity.Organisation { Name = "client", CreateDate = DateTime.Now, Id= 1 },
-                EmployeeType = EmployeeType.CLIENT
+                StoreId = 1,
+                EmployeeTypeId = 1
             });
         }
     }

@@ -19,10 +19,4 @@ namespace app.Data.Entity
         REJECTED,
         APPROVED
     }
-    public class Organisation : BaseEntity
-    {
-        [Required]
-        [Display(Name = "Name")]
-        public string Name { get; set; }
-    }
 }

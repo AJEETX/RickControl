@@ -33,7 +33,7 @@ namespace app.Service.User
                         entity.Password = model.Password.MD5Hash();
                         entity.CreateDate = DateTime.Now;
                         entity.EmployeeType = model.EmployeeType;
-                        entity.Organisation = model.Organisation;
+                        entity.StoreId = model.StoreId;
 
                         await _unitOfWork.UserRepository.AddAsync(entity);
                         await _unitOfWork.SaveAsync();

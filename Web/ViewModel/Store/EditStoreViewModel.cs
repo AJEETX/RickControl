@@ -7,12 +7,12 @@ namespace app.Model.ViewModel.Store
     {
         [Required]
         [MaxLength(30)]
-        [Display(Name = "Store Name")]
+        [Display(Name = "Company Name")]
         public string StoreName { get; set; }
 
         [Required]
         [MaxLength(10)]
-        [Display(Name = "Store Code")]
+        [Display(Name = "Company Code")]
         public string StoreCode { get; set; }
     }
 }

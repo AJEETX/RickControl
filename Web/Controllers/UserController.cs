@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using app.Core.Service;
 using app.Model.Domain;
@@ -15,12 +16,15 @@ namespace app.Web.Controllers
     public class UserController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IStoreService _storeService;
+        private readonly IEmployeeService _employeeService;
         private readonly IMapper _mapper;
 
-        public UserController(IUserService userService,
-                              IMapper mapper)
+        public UserController(IUserService userService, IStoreService storeService, IEmployeeService employeeService, IMapper mapper)
         {
             _userService = userService;
+            _storeService = storeService;
+            _employeeService = employeeService;
             _mapper = mapper;
         }
 
@@ -29,12 +33,12 @@ namespace app.Web.Controllers
             return View();
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             Console.WriteLine("hi!!!!!!!!");
             var model = new CreateUserViewModel();
-            model.EmployeeTypeList = new List<SelectListItem>{new SelectListItem("A1",  "Permanent"), new SelectListItem("B1",  "Contract")};
-            model.OrganizationList = new List<SelectListItem>{new SelectListItem("C1",  "Company1"), new SelectListItem("C2",  "Company2")};
+            model.EmployeeTypeList = await GetEmployeeTypeList() ;
+            model.CompanyList = await GetCompanyList();
             return View(model);
         }
 
@@ -102,7 +106,13 @@ namespace app.Web.Controllers
 
                 if (serviceCountResult.IsSucceeded && serviceListResult.IsSucceeded)
                 {
-                    List<ListUserViewModel> listVM = _mapper.Map<List<ListUserViewModel>>(serviceListResult.TransactionResult);
+                    List<ListUserViewModel> listVM = serviceListResult.TransactionResult.Select(l => new ListUserViewModel{
+                         Email = l.Email,
+                         Name = l.Name,
+                         Surname = l.Surname,
+                         EmployeeType = l.EmployeeType?.ToString(),
+                         CompanyName = l.StoreName
+                    }).ToList();
                     jsonDataTableModel.aaData = listVM;
                     jsonDataTableModel.iTotalDisplayRecords = serviceCountResult.TransactionResult;
                     jsonDataTableModel.iTotalRecords = serviceCountResult.TransactionResult;
@@ -138,6 +148,18 @@ namespace app.Web.Controllers
             }
             return Json(jsonResultModel);
         }
+        private async Task<IEnumerable<SelectListItem>> GetCompanyList()
+        {
+            ServiceResult<IEnumerable<StoreDTO>> serviceResult = await _storeService.GetAll();
+            IEnumerable<SelectListItem> drpCompanyList = serviceResult.TransactionResult.Select(s => new SelectListItem { Text = s.StoreName, Value = s.StoreCode });
+            return drpCompanyList;
+        }
 
+        private async Task<IEnumerable<SelectListItem>> GetEmployeeTypeList()
+        {
+            ServiceResult<IEnumerable<EmployeeTypeDTO>> serviceResult = await _employeeService.GetAll();
+            IEnumerable<SelectListItem> drpEmployeeTypeList = serviceResult.TransactionResult.Select(s => new SelectListItem { Text = s.Name, Value = s.Id.ToString() });
+            return drpEmployeeTypeList;
+        }        
     }
 }

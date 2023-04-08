@@ -6,14 +6,15 @@
         public string Password { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public int? OrganisationId { get; set; } = default!;
-        public Organisation? Organisation { get; set; } = default!;
-        public EmployeeType? EmployeeType { get; set; }
+        public bool Active { get; set; }
+        public int? StoreId { get; set; } = default!;
+        public virtual Store Store { get; set; }
+        public int? EmployeeTypeId { get; set; } = default!;
+        public virtual EmployeeType EmployeeType { get; set; }
 
     }
-    public enum EmployeeType
+    public class EmployeeType : BaseEntity
     {
-        CLIENT,
-        VENDOR
+        public string Name { get; set; }
     }
 }

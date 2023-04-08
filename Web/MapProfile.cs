@@ -117,9 +117,12 @@ namespace app.Mapper
             #endregion
 
             #region Entity & DTO
-            CreateMap<CaseStatus, CaseStatusDTO>();
-            CreateMap<CaseStatusDTO, CaseStatus>();
+            CreateMap<EmployeeType, EmployeeTypeDTO>();
+            CreateMap<EmployeeTypeDTO, EmployeeType>();
 
+            CreateMap<CaseStatus, CaseStatusDTO>();
+
+            CreateMap<CaseStatusDTO, CaseStatus>();
             CreateMap<Category, CategoryDTO>();
             CreateMap<CategoryDTO, Category>();
 

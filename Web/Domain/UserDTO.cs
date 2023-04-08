@@ -8,7 +8,8 @@ namespace app.Model.Domain
         public string Password { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public Organisation? Organisation { get; set; }
-        public EmployeeType? EmployeeType { get; set; }
+        public string StoreName { get; set; }
+        public int StoreId { get; set; }
+        public EmployeeType? EmployeeType { get; set; } = default!;
     }
 }

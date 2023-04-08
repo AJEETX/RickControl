@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using app.Model.ViewModel.Base;
-using app.Data.Entity;
 
 namespace app.Model.ViewModel.Product
 {

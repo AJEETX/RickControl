@@ -15,6 +15,7 @@ namespace app.Core
         ITransactionTypeRepository TransactionTypeRepository { get; }
         IUnitOfMeasureRepository UnitOfMeasureRepository { get; }
         IClaimStatusRepository ClaimStatusRepository { get; }
+        IEmployeeRepository EmployeeRepository { get; }
         IUserRepository UserRepository { get; }
         Task SaveAsync();
         void Save();

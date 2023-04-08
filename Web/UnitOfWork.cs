@@ -1,6 +1,7 @@
 ﻿using app.Core.Repository;
 using app.Data.Context;
 using app.Repository.Category;
+using app.Repository.Employee;
 using app.Repository.Product;
 using app.Repository.Store;
 using app.Repository.StoreStock;
@@ -26,6 +27,7 @@ namespace app.Core
             _context = easyStockManagerDbContext;
         }
         private ICategoryRepository iCategoryRepository;
+        private IEmployeeRepository iEmployeeRepository;
         private IProductRepository iProductRepository;
         private IStoreRepository iStoreRepository;
         private IStoreStockRepository iStoreStockRepository;
@@ -56,6 +58,15 @@ namespace app.Core
             }
         }
 
+        public IEmployeeRepository EmployeeRepository
+        {
+            get
+            {
+                if (iEmployeeRepository == null)
+                    iEmployeeRepository = new EmployeeRepository(_context);
+                return iEmployeeRepository;
+            }
+        }
         public IStoreRepository StoreRepository
         {
             get
