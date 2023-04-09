@@ -66,6 +66,8 @@ namespace app.Service.User
                     IEnumerable<Entity.User> list = await _unitOfWork
                                                                 .UserRepository
                                                                 .FindAsync(filter: x => (string.IsNullOrEmpty(criteria.Email) || x.Email.Contains(criteria.Email)) &&
+                                                                                        (criteria.StoreId == 0 || x.StoreId == criteria.StoreId) &&
+                                                                                        (criteria.EmployeeTypeId == null || x.EmployeeTypeId == criteria.EmployeeTypeId) &&
                                                                                         (string.IsNullOrEmpty(criteria.Name) || x.Name.Contains(criteria.Name)) &&
                                                                                         (string.IsNullOrEmpty(criteria.Surname) || x.Surname.Contains(criteria.Surname)),
                                                                            includes: new List<string>() { "Store", "EmployeeType" },
@@ -100,6 +102,8 @@ namespace app.Service.User
                 {
                     int count = await _unitOfWork.UserRepository
                                                   .FindCountAsync(filter: x => (string.IsNullOrEmpty(criteria.Email) || x.Email.Contains(criteria.Email)) &&
+                                                                               (criteria.StoreId == 0 || x.StoreId == criteria.StoreId) &&
+                                                                               (criteria.EmployeeTypeId == null || x.EmployeeTypeId == criteria.EmployeeTypeId) &&
                                                                                (string.IsNullOrEmpty(criteria.Name) || x.Name.Contains(criteria.Name)) &&
                                                                                (string.IsNullOrEmpty(criteria.Surname) || x.Surname.Contains(criteria.Surname)));
 

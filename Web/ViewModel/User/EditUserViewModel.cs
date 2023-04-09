@@ -28,7 +28,9 @@ namespace app.Model.ViewModel.User
         [MaxLength(30)]
         [Display]
         public string Surname { get; set; }
+        [Display(Name = "Company")]
         public int StoreId { get; set; }
+        [Display(Name = "Employee type")]
         public int? EmployeeTypeId { get; set; }
 
 
