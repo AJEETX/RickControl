@@ -54,7 +54,7 @@ namespace app.Service.Product
                                                                 .FindAsync(filter: x => (string.IsNullOrEmpty(criteria.ProductName) || x.ProductName.Contains(criteria.ProductName)) &&
                                                                                         (string.IsNullOrEmpty(criteria.Barcode) || x.Barcode.Contains(criteria.Barcode)) &&
                                                                                         (criteria.CategoryId == null || x.CategoryId == criteria.CategoryId) &&
-                                                                                        (criteria.StatusId == null || x.StatusId == criteria.StatusId) &&
+                                                                                        (criteria.Status == null || x.Status == criteria.Status) &&
                                                                                         (criteria.UnitOfMeasureId == null || x.UnitOfMeasureId == criteria.UnitOfMeasureId),
                                                                            includes: new List<string>() { "UnitOfMeasure", "Category" },
                                                                            orderByDesc: x => x.Id,
@@ -84,6 +84,7 @@ namespace app.Service.Product
                     int count = await _unitOfWork.ProductRepository
                                                  .FindCountAsync(filter: x => (string.IsNullOrEmpty(criteria.ProductName) || x.ProductName.Contains(criteria.ProductName)) &&
                                                                               (string.IsNullOrEmpty(criteria.Barcode) || x.Barcode.Contains(criteria.Barcode)) &&
+                                                                                        (criteria.Status == null || x.Status == criteria.Status) &&
                                                                               (criteria.CategoryId == null || x.CategoryId == criteria.CategoryId) &&
                                                                               (criteria.UnitOfMeasureId == null || x.UnitOfMeasureId == criteria.UnitOfMeasureId));
                     result.TransactionResult = count;

@@ -16,7 +16,7 @@ $(document).ready(function () {
                 { "name": "ProductName", "value": $('input[name="ProductName"]').val() },
                 { "name": "Barcode", "value": $('input[name="Barcode"]').val() },
                 { "name": "CategoryId", "value": $('select[name="CategoryId"]').val() },
-                { "name": "StatusId", "value": $('select[name="StatusId"]').val() },
+                { "name": "Status", "value": $('select[name="Status"]').val() },
                 { "name": "UnitOfMeasureId", "value": $('select[name="UnitOfMeasureId"]').val() }
             );
             $.ajax({
