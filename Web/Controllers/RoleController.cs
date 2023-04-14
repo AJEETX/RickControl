@@ -99,7 +99,6 @@ namespace app.Web.Controllers
                 if (serviceCountResult.IsSucceeded && serviceListResult.IsSucceeded)
                 {
                     List<ListRoleViewModel> listVM = serviceListResult.TransactionResult.Select(s => new ListRoleViewModel{
-                        Id = s.Id.Value,
                         RoleName = s.RoleName,
                         RoleCode = s.RoleCode
                     }).ToList();

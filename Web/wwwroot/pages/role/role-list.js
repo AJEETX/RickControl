@@ -33,10 +33,10 @@ $(document).ready(function () {
         aoColumns:
             [
                 {
-                    mDataProp: "Role Name"
+                    mDataProp: "RoleName"
                 },
                 {
-                    mDataProp: "Role Code"
+                    mDataProp: "RoleCode"
                 },
                 {
                     "sDefaultContent": "",
