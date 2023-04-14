@@ -12,32 +12,26 @@ using app.Data.Context;
 namespace app.Migrations
 {
     [DbContext(typeof(RiskControlDbContext))]
-    [Migration("20230408145758_initi000")]
-    partial class initi000
+    [Migration("20230414122744_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.4")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
 
             modelBuilder.Entity("app.Data.Entity.CaseStatus", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -47,43 +41,43 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 162, DateTimeKind.Local).AddTicks(5636),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 77, DateTimeKind.Local).AddTicks(3672),
                             Status = "CREATED"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 162, DateTimeKind.Local).AddTicks(5669),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 77, DateTimeKind.Local).AddTicks(3692),
                             Status = "REJECTED"
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 162, DateTimeKind.Local).AddTicks(5673),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 77, DateTimeKind.Local).AddTicks(3695),
                             Status = "CLOSED"
                         },
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 162, DateTimeKind.Local).AddTicks(5677),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 77, DateTimeKind.Local).AddTicks(3698),
                             Status = "ASSIGNED"
                         },
                         new
                         {
                             Id = 5,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 162, DateTimeKind.Local).AddTicks(5682),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 77, DateTimeKind.Local).AddTicks(3700),
                             Status = "INVESTIGATING"
                         },
                         new
                         {
                             Id = 6,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 162, DateTimeKind.Local).AddTicks(5686),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 77, DateTimeKind.Local).AddTicks(3703),
                             Status = "PENDING"
                         },
                         new
                         {
                             Id = 7,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 162, DateTimeKind.Local).AddTicks(5690),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 77, DateTimeKind.Local).AddTicks(3706),
                             Status = "APPROVED"
                         });
                 });
@@ -92,17 +86,18 @@ namespace app.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -113,15 +108,13 @@ namespace app.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -131,13 +124,13 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 162, DateTimeKind.Local).AddTicks(6073),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 77, DateTimeKind.Local).AddTicks(4225),
                             Name = "Permanent"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 162, DateTimeKind.Local).AddTicks(6082),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 77, DateTimeKind.Local).AddTicks(4233),
                             Name = "Contract"
                         });
                 });
@@ -146,26 +139,27 @@ namespace app.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Barcode")
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Image")
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal?>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -173,16 +167,16 @@ namespace app.Migrations
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("StatusId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("UnitOfMeasureId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -197,7 +191,7 @@ namespace app.Migrations
                         {
                             Id = 1,
                             Barcode = "EX01",
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 161, DateTimeKind.Local).AddTicks(9117),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 76, DateTimeKind.Local).AddTicks(4412),
                             Price = 1m,
                             ProductName = "Example Product",
                             Status = "CREATED",
@@ -210,22 +204,23 @@ namespace app.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("StoreCode")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("StoreName")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -235,7 +230,7 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 161, DateTimeKind.Local).AddTicks(9003),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 76, DateTimeKind.Local).AddTicks(4253),
                             StoreCode = "EX01",
                             StoreName = "Example Company"
                         });
@@ -244,10 +239,10 @@ namespace app.Migrations
             modelBuilder.Entity("app.Data.Entity.StoreStock", b =>
                 {
                     b.Property<int>("StoreId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ProductId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Stock")
                         .HasColumnType("decimal(18,2)");
@@ -263,31 +258,32 @@ namespace app.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("StoreId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("ToStoreId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("TransactionCode")
                         .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("TransactionDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("TransactionTypeId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -303,10 +299,10 @@ namespace app.Migrations
             modelBuilder.Entity("app.Data.Entity.TransactionDetail", b =>
                 {
                     b.Property<int>("TransactionId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ProductId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
@@ -322,17 +318,15 @@ namespace app.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("TransactionTypeName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -342,19 +336,19 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 161, DateTimeKind.Local).AddTicks(7249),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 76, DateTimeKind.Local).AddTicks(2437),
                             TransactionTypeName = "Stock Receipt"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 161, DateTimeKind.Local).AddTicks(7335),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 76, DateTimeKind.Local).AddTicks(2460),
                             TransactionTypeName = "Stock Out"
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 161, DateTimeKind.Local).AddTicks(7339),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 76, DateTimeKind.Local).AddTicks(2462),
                             TransactionTypeName = "Transfer"
                         });
                 });
@@ -363,22 +357,23 @@ namespace app.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Isocode")
                         .IsRequired()
                         .HasMaxLength(3)
-                        .HasColumnType("nvarchar(3)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("UnitOfMeasureName")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -388,21 +383,21 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 161, DateTimeKind.Local).AddTicks(7592),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 76, DateTimeKind.Local).AddTicks(2801),
                             Isocode = "CC",
                             UnitOfMeasureName = "Comprehensive"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 161, DateTimeKind.Local).AddTicks(7603),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 76, DateTimeKind.Local).AddTicks(2815),
                             Isocode = "NC",
                             UnitOfMeasureName = "Non-Comprehensive"
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 161, DateTimeKind.Local).AddTicks(7608),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 76, DateTimeKind.Local).AddTicks(2820),
                             Isocode = "OC",
                             UnitOfMeasureName = "Other"
                         });
@@ -412,41 +407,42 @@ namespace app.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("EmployeeTypeId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("StoreId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -464,7 +460,7 @@ namespace app.Migrations
                         {
                             Id = 1,
                             Active = false,
-                            CreateDate = new DateTime(2023, 4, 9, 0, 57, 58, 161, DateTimeKind.Local).AddTicks(8839),
+                            CreateDate = new DateTime(2023, 4, 14, 12, 27, 44, 76, DateTimeKind.Local).AddTicks(4059),
                             Email = "admin@admin.com",
                             EmployeeTypeId = 1,
                             Name = "Admin",

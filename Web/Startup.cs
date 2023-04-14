@@ -38,7 +38,7 @@ namespace app.Web
         {
             services.AddDbContext<RiskControlDbContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionStrings:SqlConStr"].ToString());
+                options.UseSqlite(Configuration["ConnectionStrings:SqlConStr"].ToString());
             });
             services.AddAutoMapper(c => c.AddProfile<app.Mapper.MapProfile>(), typeof(Startup));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
