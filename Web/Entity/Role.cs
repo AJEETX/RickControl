@@ -1,6 +1,13 @@
-public class Role: BaseEntity
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace app.Data.Entity
 {
-    public string Name {get; set;}
-    public string Code {get; set;}
-    public virtual User User {get; set;}
+    public class Role: BaseEntity
+    {
+        public string Name {get; set;}
+        public string Code {get; set;}
+        public virtual User User {get; set;}
+    }
 }
