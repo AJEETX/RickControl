@@ -7,6 +7,7 @@ namespace app.Core
     public interface IUnitOfWorks : IDisposable
     {
         ICategoryRepository CategoryRepository { get; }
+        IRoleRepository RoleRepository { get; }
         IProductRepository ProductRepository { get; }
         IStoreRepository StoreRepository { get; }
         IStoreStockRepository StoreStockRepository { get; }

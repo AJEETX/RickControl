@@ -9,5 +9,9 @@ namespace app.Model.ViewModel.Role
         [MaxLength(30)]
         [Display(Name = "Role Name")]
         public string RoleName { get; set; }
+        [Required]
+        [MaxLength(3)]
+        [Display(Name = "Role Code")]
+        public string RoleCode { get; set; }           
     }
 }

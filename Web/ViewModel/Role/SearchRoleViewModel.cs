@@ -8,6 +8,8 @@ namespace app.Model.ViewModel.Role
 
         [Display(Name = "Role Name")]
         public string RoleName { get; set; }
+        [Display(Name = "Role Code")]
+        public string RoleCode { get; set; }        
 
     }
 }

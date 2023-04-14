@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,24 +9,26 @@ using app.Core.Service;
 using app.Model.Service;
 using app.Model.Domain;
 using app.Core;
+using System.Linq;
 
-namespace app.Service.Category
+namespace app.Service.Role
 {
-    public class CategoryService : BaseService, ICategoryService
+    public class RoleService: BaseService, IRoleService
     {
-        public CategoryService(IUnitOfWorks unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
+        public RoleService(IUnitOfWorks unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
         }
-        public async Task<ServiceResult> AddAsync(CategoryDTO model)
+
+        public async Task<ServiceResult> AddAsync(RoleDTO model)
         {
             ServiceResult result = new ServiceResult();
             try
             {
                 using (_unitOfWork)
                 {
-                    Entity.Category entity = _mapper.Map<Data.Entity.Category>(model);
+                    var entity = new Entity.Role { Name = model.RoleName, Code = model.RoleCode};
                     entity.CreateDate = DateTime.Now;
-                    await _unitOfWork.CategoryRepository.AddAsync(entity);
+                    await _unitOfWork.RoleRepository.AddAsync(entity);
                     await _unitOfWork.SaveAsync();
                     result.Id = entity.Id;
                     result.UserMessage = CommonMessages.MSG0001;
@@ -39,22 +41,28 @@ namespace app.Service.Category
             }
             return result;
         }
-        public async Task<ServiceResult<IEnumerable<CategoryDTO>>> Find(CategoryDTO criteria)
+
+        public async Task<ServiceResult<IEnumerable<RoleDTO>>> Find(RoleDTO criteria)
         {
-            var result = new ServiceResult<IEnumerable<CategoryDTO>>();
+            var result = new ServiceResult<IEnumerable<RoleDTO>>();
 
             try
             {
                 using (_unitOfWork)
                 {
-                    IEnumerable<Entity.Category> list = await _unitOfWork
-                                                                .CategoryRepository
-                                                                .FindAsync(filter: x => (string.IsNullOrEmpty(criteria.CategoryName) || x.CategoryName.Contains(criteria.CategoryName)),
+                    IEnumerable<Entity.Role> list = await _unitOfWork
+                                                                .RoleRepository
+                                                                .FindAsync(filter: x => 
+                                                                (
+                                                                    string.IsNullOrEmpty(criteria.RoleName) || x.Name.Contains(criteria.RoleName) &&
+                                                                    string.IsNullOrEmpty(criteria.RoleCode) || x.Name.Contains(criteria.RoleCode)
+
+                                                                ),
                                                                            orderByDesc: x => x.Id,
                                                                            skip: criteria.PageNumber,
                                                                            take: criteria.RecordCount);
 
-                    result.TransactionResult = _mapper.Map<IEnumerable<CategoryDTO>>(list);
+                    result.TransactionResult = list.Select(l => new RoleDTO{RoleName = l.Name, RoleCode = l.Code });
                 }
             }
             catch (Exception ex)
@@ -65,7 +73,8 @@ namespace app.Service.Category
 
             return result;
         }
-        public async Task<ServiceResult<int>> FindCount(CategoryDTO criteria)
+
+        public async Task<ServiceResult<int>> FindCount(RoleDTO criteria)
         {
             ServiceResult<int> result = new ServiceResult<int>();
 
@@ -73,7 +82,10 @@ namespace app.Service.Category
             {
                 using (_unitOfWork)
                 {
-                    int count = await _unitOfWork.CategoryRepository.FindCountAsync(filter: x => (string.IsNullOrEmpty(criteria.CategoryName) || x.CategoryName.Contains(criteria.CategoryName)));
+                    int count = await _unitOfWork.RoleRepository.FindCountAsync(filter: x => 
+                    (string.IsNullOrEmpty(criteria.RoleName) || x.Name.Contains(criteria.RoleName)) && 
+                    (string.IsNullOrEmpty(criteria.RoleCode) || x.Code.Contains(criteria.RoleCode)) 
+                    );
                     result.TransactionResult = count;
                 }
             }
@@ -85,15 +97,16 @@ namespace app.Service.Category
 
             return result;
         }
-        public async Task<ServiceResult<IEnumerable<CategoryDTO>>> GetAll()
+
+        public async Task<ServiceResult<IEnumerable<RoleDTO>>> GetAll()
         {
-            ServiceResult<IEnumerable<CategoryDTO>> result = new ServiceResult<IEnumerable<CategoryDTO>>();
+            ServiceResult<IEnumerable<RoleDTO>> result = new ServiceResult<IEnumerable<RoleDTO>>();
             try
             {
                 using (_unitOfWork)
                 {
-                    IEnumerable<Entity.Category> list = await _unitOfWork.CategoryRepository.GetAllAsync();
-                    result.TransactionResult = _mapper.Map<IEnumerable<CategoryDTO>>(list);
+                    IEnumerable<Entity.Role> list = await _unitOfWork.RoleRepository.GetAllAsync();
+                    result.TransactionResult = list.Select(l => new RoleDTO{RoleName = l.Name, RoleCode = l.Code });
                 }
             }
             catch (Exception ex)
@@ -104,15 +117,16 @@ namespace app.Service.Category
 
             return result;
         }
-        public async Task<ServiceResult<CategoryDTO>> GetById(int id)
+
+        public async Task<ServiceResult<RoleDTO>> GetById(int id)
         {
-            ServiceResult<CategoryDTO> result = new ServiceResult<CategoryDTO>();
+            ServiceResult<RoleDTO> result = new ServiceResult<RoleDTO>();
             try
             {
                 using (_unitOfWork)
                 {
-                    Entity.Category entity = await _unitOfWork.CategoryRepository.GetByIdAsync(id);
-                    result.TransactionResult = _mapper.Map<CategoryDTO>(entity);
+                    Entity.Role entity = await _unitOfWork.RoleRepository.GetByIdAsync(id);
+                    result.TransactionResult = new RoleDTO{ RoleName = entity.Name, RoleCode = entity.Code };
                 }
             }
             catch (Exception ex)
@@ -122,6 +136,7 @@ namespace app.Service.Category
             }
             return result;
         }
+
         public async Task<ServiceResult> RemoveById(int id)
         {
             ServiceResult result = new ServiceResult();
@@ -129,7 +144,7 @@ namespace app.Service.Category
             {
                 using (_unitOfWork)
                 {
-                    await _unitOfWork.CategoryRepository.RemoveById(id);
+                    await _unitOfWork.RoleRepository.RemoveById(id);
                     await _unitOfWork.SaveAsync();
                     result.UserMessage = CommonMessages.MSG0001;
                 }
@@ -141,18 +156,20 @@ namespace app.Service.Category
             }
             return result;
         }
-        public async Task<ServiceResult> Update(CategoryDTO model)
+
+        public async Task<ServiceResult> Update(RoleDTO model)
         {
             ServiceResult result = new ServiceResult();
             try
             {
                 using (_unitOfWork)
                 {
-                    Entity.Category entity = await _unitOfWork.CategoryRepository.GetByIdAsync(model.Id.Value);
+                    Entity.Role entity = await _unitOfWork.RoleRepository.GetByIdAsync(model.Id.Value);
                     if (entity != null)
                     {
-                        _mapper.Map(model, entity);
-                        _unitOfWork.CategoryRepository.Update(entity);
+                       entity.Name = model.RoleName;
+                       entity.Code = model.RoleCode;
+                        _unitOfWork.RoleRepository.Update(entity);
                         await _unitOfWork.SaveAsync();
                         result.UserMessage = CommonMessages.MSG0001;
                     }

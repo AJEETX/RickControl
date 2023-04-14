@@ -37,6 +37,7 @@ namespace app.Data.Context
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionTypeSeed());
             modelBuilder.ApplyConfiguration(new UnitOfMeasureSeed());
+            modelBuilder.ApplyConfiguration(new RoleSeed());
             modelBuilder.ApplyConfiguration(new UserSeed());
             modelBuilder.ApplyConfiguration(new StoreSeed());
             modelBuilder.ApplyConfiguration(new ProductSeed());

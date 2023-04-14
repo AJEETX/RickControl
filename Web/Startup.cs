@@ -8,6 +8,7 @@ using app.Service.CaseStatus;
 using app.Service.Category;
 using app.Service.Employee;
 using app.Service.Product;
+using app.Service.Role;
 using app.Service.Store;
 using app.Service.StoreStock;
 using app.Service.Transaction;
@@ -43,6 +44,7 @@ namespace app.Web
             services.AddAutoMapper(c => c.AddProfile<app.Mapper.MapProfile>(), typeof(Startup));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<ICaseStatusService, CaseStatusService>();
             services.AddScoped<IUnitOfMeasureService, UnitOfMeasureService>();
