@@ -62,7 +62,7 @@ namespace app.Service.Role
                                                                            skip: criteria.PageNumber,
                                                                            take: criteria.RecordCount);
 
-                    result.TransactionResult = list.Select(l => new RoleDTO{RoleName = l.Name, RoleCode = l.Code });
+                    result.TransactionResult = list.Select(l => new RoleDTO{Id = l.Id, RoleName = l.Name, RoleCode = l.Code });
                 }
             }
             catch (Exception ex)

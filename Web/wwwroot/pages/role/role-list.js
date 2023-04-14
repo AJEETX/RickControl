@@ -13,7 +13,8 @@ $(document).ready(function () {
         "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
             aoData.push(
                 { "name": "returnformat", "value": "plain" },
-                { "name": "RoleName", "value": $('input[name="RoleName"]').val() }
+                { "name": "RoleName", "value": $('input[name="RoleName"]').val() },
+                { "name": "RoleCode", "value": $('input[name="RoleCode"]').val() }
             );
             $.ajax({
                 "dataType": 'json',
