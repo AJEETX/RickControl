@@ -11,6 +11,7 @@
         public virtual Store Store { get; set; }
         public int? EmployeeTypeId { get; set; } = default!;
         public virtual EmployeeType EmployeeType { get; set; }
+        public ICollection<Role>  Roles  { get; set; }
 
     }
     public class EmployeeType : BaseEntity

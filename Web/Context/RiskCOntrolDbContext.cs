@@ -13,6 +13,7 @@ namespace app.Data.Context
 
         public DbSet<Category> Category { get; set; }
         public DbSet<Product> Product { get; set; }
+        public DbSet<Role> Role { get; set; }        
         public DbSet<Store> Store { get; set; }
         public DbSet<StoreStock> StoreStock { get; set; }
         public DbSet<Transaction> Transaction { get; set; }
@@ -25,6 +26,7 @@ namespace app.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder) 
         {
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());            
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new StoreConfiguration());
             modelBuilder.ApplyConfiguration(new StoreStockConfiguration());
