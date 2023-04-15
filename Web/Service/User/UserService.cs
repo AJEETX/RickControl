@@ -30,12 +30,12 @@ namespace app.Service.User
 
                     if (!emailValidation)
                     {
+                        var roles = await _unitOfWork.RoleRepository.FindAsync( r => model.SelectedRoles.Contains(r.Code));
                         Entity.User entity = _mapper.Map<Data.Entity.User>(model);
                         entity.Password = model.Password.MD5Hash();
                         entity.CreateDate = DateTime.Now;
                         entity.EmployeeTypeId = model.EmployeeTypeId;
                         entity.StoreId = model.StoreId;
-
                         await _unitOfWork.UserRepository.AddAsync(entity);
                         await _unitOfWork.SaveAsync();
                         result.Id = entity.Id;

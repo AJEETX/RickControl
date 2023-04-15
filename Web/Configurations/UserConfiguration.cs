@@ -15,7 +15,7 @@ namespace app.Data.Configurations
             builder.Property(x => x.Password).IsRequired().HasMaxLength(40);
             builder.Property(x => x.Email).IsRequired().HasMaxLength(50);
             builder.HasIndex(u => u.Email).IsUnique();
-            builder.HasMany(x => x.Roles);
+            builder.HasMany<Role>(r => r.Roles);
             builder.ToTable("User");
         }
     }

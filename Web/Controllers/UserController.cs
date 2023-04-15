@@ -55,6 +55,7 @@ namespace app.Web.Controllers
             JsonResultModel jsonResultModel = new JsonResultModel();
             try
             {
+
                 UserDTO userDTO = new UserDTO{ 
                     Email = model.Email,
                     Password = model.Password,
@@ -62,7 +63,7 @@ namespace app.Web.Controllers
                     Surname = model.Surname,
                     StoreId = model.StoreId,
                     EmployeeTypeId = model.EmployeeTypeId,
-                    Roles = model.UserRoles.Select(u => new RoleDTO{ Id =int.Parse(u.Value), RoleName = u.Text }).ToList()
+                    SelectedRoles = model.SelectedUserRoleIds
                 };
                 var serviceResult = await _userService.AddAsync(userDTO);
                 jsonResultModel = _mapper.Map<JsonResultModel>(serviceResult);
@@ -87,8 +88,7 @@ namespace app.Web.Controllers
             EditUserViewModel model = _mapper.Map<EditUserViewModel>(serviceResult.TransactionResult);
             model.CompanyList = await GetCompanyList();
             model.EmployeeTypeList = await GetEmployeeTypeList();
-            var selectedRoles = (await GetUserRoles()).Where(u => model.UserRoleIds.Any(a => a ==int.Parse(u.Value)));
-            model.UserRoles = selectedRoles.Select(s => new SelectListItem{ Selected =true, Value = s.Value, Text = s.Text });
+            model.UserRoles = await GetUserRoles();
             return View(model);
         }
 
@@ -176,7 +176,7 @@ namespace app.Web.Controllers
         {
             var serviceResult = await _roleService.GetAll();
             var result = serviceResult.TransactionResult.Select(s => new SelectListItem{
-                Value = s.Id.ToString(),
+                Value = s.RoleCode,
                 Text = s.RoleName
             });
             return result;

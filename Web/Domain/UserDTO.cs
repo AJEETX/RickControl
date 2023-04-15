@@ -13,6 +13,7 @@ namespace app.Model.Domain
         public int StoreId { get; set; }
         public int? EmployeeTypeId { get; set; } 
         public string EmployeeType { get; set; }
+        public IList<string> SelectedRoles { get; set; }
         public IList<RoleDTO> Roles { get; set; }
     }
 }

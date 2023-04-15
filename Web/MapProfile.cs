@@ -53,8 +53,10 @@ namespace app.Mapper
                     .ForMember(dm => dm.PageNumber, vm => vm.MapFrom(vmf => vmf.iDisplayStart))
                     .ForMember(dm => dm.RecordCount, vm => vm.MapFrom(vmf => vmf.iDisplayLength));
             CreateMap<UserDTO, ListUserViewModel>();
-            CreateMap<UserDTO, EditUserViewModel>();
-            CreateMap<EditUserViewModel, UserDTO>();
+            CreateMap<UserDTO, EditUserViewModel>()
+            .ForMember(dm => dm.SelectedUserRoleIds, vm => vm.MapFrom(vmf => vmf.SelectedRoles));
+            CreateMap<EditUserViewModel, UserDTO>()
+            .ForMember(dm => dm.SelectedRoles, vm => vm.MapFrom(vmf => vmf.SelectedUserRoleIds));
 
             CreateMap<CreateStoreViewModel, StoreDTO>();
             CreateMap<SearchStoreViewModel, StoreDTO>()

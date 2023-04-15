@@ -14,8 +14,7 @@ namespace app.Data.Entity
         public virtual Store Store { get; set; }
         public int? EmployeeTypeId { get; set; } = default!;
         public virtual EmployeeType EmployeeType { get; set; }
-        public virtual ICollection<Role>  Roles  { get; set; }
-
+        public IList<Role>  Roles  { get; set; } 
     }
     public class EmployeeType : BaseEntity
     {
