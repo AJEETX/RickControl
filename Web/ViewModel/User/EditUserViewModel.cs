@@ -32,7 +32,7 @@ namespace app.Model.ViewModel.User
         public int StoreId { get; set; }
         [Display(Name = "Employee type")]
         public int? EmployeeTypeId { get; set; }
-
+        public IList<UserRoleViewModel> UserRole { get; set; }
 
         public IEnumerable<SelectListItem> CompanyList { get; set; }
         public IEnumerable<SelectListItem> EmployeeTypeList { get; set; }     

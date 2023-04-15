@@ -18,13 +18,16 @@ namespace app.Web.Controllers
         private readonly IUserService _userService;
         private readonly IStoreService _storeService;
         private readonly IEmployeeService _employeeService;
+        private readonly IRoleService _roleService;
         private readonly IMapper _mapper;
 
-        public UserController(IUserService userService, IStoreService storeService, IEmployeeService employeeService, IMapper mapper)
+        public UserController(IUserService userService, IStoreService storeService, IEmployeeService employeeService,
+        IRoleService roleService, IMapper mapper)
         {
             _userService = userService;
             _storeService = storeService;
             _employeeService = employeeService;
+            _roleService = roleService;
             _mapper = mapper;
         }
 
@@ -41,6 +44,7 @@ namespace app.Web.Controllers
             var model = new CreateUserViewModel();
             model.EmployeeTypeList = await GetEmployeeTypeList() ;
             model.CompanyList = await GetCompanyList();
+            model.UserRoles = await GetUserRoles();
             return View(model);
         }
 
@@ -164,6 +168,15 @@ namespace app.Web.Controllers
                 jsonResultModel.UserMessage = ex.Message;
             }
             return Json(jsonResultModel);
+        }
+        private async Task<IEnumerable<SelectListItem>> GetUserRoles()
+        {
+            var serviceResult = await _roleService.GetAll();
+            var result = serviceResult.TransactionResult.Select(s => new SelectListItem{
+                Value = s.RoleCode,
+                Text = s.RoleName
+            });
+            return result;
         }
         private async Task<IEnumerable<SelectListItem>> GetCompanyList()
         {

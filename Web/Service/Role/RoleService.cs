@@ -55,7 +55,7 @@ namespace app.Service.Role
                                                                 .FindAsync(filter: x => 
                                                                 (
                                                                     string.IsNullOrEmpty(criteria.RoleName) || x.Name.Contains(criteria.RoleName) &&
-                                                                    string.IsNullOrEmpty(criteria.RoleCode) || x.Name.Contains(criteria.RoleCode)
+                                                                    string.IsNullOrEmpty(criteria.RoleCode) || x.Code.Contains(criteria.RoleCode)
 
                                                                 ),
                                                                            orderByDesc: x => x.Id,

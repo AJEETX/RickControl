@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace app.Migrations
 {
     /// <inheritdoc />
-    public partial class roles : Migration
+    public partial class UpdateUserRoles : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -274,13 +274,13 @@ namespace app.Migrations
                 columns: new[] { "Id", "CreateDate", "Status" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 14, 14, 42, 41, 98, DateTimeKind.Local).AddTicks(1551), "CREATED" },
-                    { 2, new DateTime(2023, 4, 14, 14, 42, 41, 98, DateTimeKind.Local).AddTicks(1575), "REJECTED" },
-                    { 3, new DateTime(2023, 4, 14, 14, 42, 41, 98, DateTimeKind.Local).AddTicks(1577), "CLOSED" },
-                    { 4, new DateTime(2023, 4, 14, 14, 42, 41, 98, DateTimeKind.Local).AddTicks(1579), "ASSIGNED" },
-                    { 5, new DateTime(2023, 4, 14, 14, 42, 41, 98, DateTimeKind.Local).AddTicks(1581), "INVESTIGATING" },
-                    { 6, new DateTime(2023, 4, 14, 14, 42, 41, 98, DateTimeKind.Local).AddTicks(1582), "PENDING" },
-                    { 7, new DateTime(2023, 4, 14, 14, 42, 41, 98, DateTimeKind.Local).AddTicks(1584), "APPROVED" }
+                    { 1, new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5428), "CREATED" },
+                    { 2, new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5444), "REJECTED" },
+                    { 3, new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5446), "CLOSED" },
+                    { 4, new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5447), "ASSIGNED" },
+                    { 5, new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5449), "INVESTIGATING" },
+                    { 6, new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5451), "PENDING" },
+                    { 7, new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5453), "APPROVED" }
                 });
 
             migrationBuilder.InsertData(
@@ -288,28 +288,28 @@ namespace app.Migrations
                 columns: new[] { "Id", "CreateDate", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 14, 14, 42, 41, 98, DateTimeKind.Local).AddTicks(1994), "Permanent" },
-                    { 2, new DateTime(2023, 4, 14, 14, 42, 41, 98, DateTimeKind.Local).AddTicks(1997), "Contract" }
+                    { 1, new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5799), "Permanent" },
+                    { 2, new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5802), "Contract" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Role",
                 columns: new[] { "Id", "Code", "CreateDate", "Name", "UserId" },
-                values: new object[] { 1, "PORTAL-ADMIN", new DateTime(2023, 4, 14, 14, 42, 41, 97, DateTimeKind.Local).AddTicks(4273), "portal-admin", null });
+                values: new object[] { 1, "PAM", new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(8448), "portal-admin", null });
 
             migrationBuilder.InsertData(
                 table: "Store",
                 columns: new[] { "Id", "CreateDate", "StoreCode", "StoreName" },
-                values: new object[] { 1, new DateTime(2023, 4, 14, 14, 42, 41, 97, DateTimeKind.Local).AddTicks(5250), "EX01", "Example Company" });
+                values: new object[] { 1, new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(9309), "EX01", "Example Company" });
 
             migrationBuilder.InsertData(
                 table: "TransactionType",
                 columns: new[] { "Id", "CreateDate", "TransactionTypeName" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 14, 14, 42, 41, 97, DateTimeKind.Local).AddTicks(3861), "Stock Receipt" },
-                    { 2, new DateTime(2023, 4, 14, 14, 42, 41, 97, DateTimeKind.Local).AddTicks(3893), "Stock Out" },
-                    { 3, new DateTime(2023, 4, 14, 14, 42, 41, 97, DateTimeKind.Local).AddTicks(3895), "Transfer" }
+                    { 1, new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(8130), "Stock Receipt" },
+                    { 2, new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(8156), "Stock Out" },
+                    { 3, new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(8158), "Transfer" }
                 });
 
             migrationBuilder.InsertData(
@@ -317,20 +317,20 @@ namespace app.Migrations
                 columns: new[] { "Id", "CreateDate", "Isocode", "UnitOfMeasureName" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 14, 14, 42, 41, 97, DateTimeKind.Local).AddTicks(4169), "CC", "Comprehensive" },
-                    { 2, new DateTime(2023, 4, 14, 14, 42, 41, 97, DateTimeKind.Local).AddTicks(4177), "NC", "Non-Comprehensive" },
-                    { 3, new DateTime(2023, 4, 14, 14, 42, 41, 97, DateTimeKind.Local).AddTicks(4181), "OC", "Other" }
+                    { 1, new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(8353), "CC", "Comprehensive" },
+                    { 2, new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(8361), "NC", "Non-Comprehensive" },
+                    { 3, new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(8364), "OC", "Other" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Product",
                 columns: new[] { "Id", "Barcode", "CategoryId", "CreateDate", "Description", "Image", "Price", "ProductName", "Status", "StatusId", "UnitOfMeasureId" },
-                values: new object[] { 1, "EX01", null, new DateTime(2023, 4, 14, 14, 42, 41, 97, DateTimeKind.Local).AddTicks(5364), null, null, 1m, "Example Product", "CREATED", 1, 1 });
+                values: new object[] { 1, "EX01", null, new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(9494), null, null, 1m, "Example Product", "CREATED", 1, 1 });
 
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "Active", "CreateDate", "Email", "EmployeeTypeId", "Name", "Password", "StoreId", "Surname" },
-                values: new object[] { 1, false, new DateTime(2023, 4, 14, 14, 42, 41, 97, DateTimeKind.Local).AddTicks(5126), "admin@admin.com", 1, "Admin", "827ccb0eea8a706c4c34a16891f84e7b", 1, "Admin" });
+                values: new object[] { 1, false, new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(9213), "admin@admin.com", 1, "Admin", "827ccb0eea8a706c4c34a16891f84e7b", 1, "Admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Product_CategoryId",

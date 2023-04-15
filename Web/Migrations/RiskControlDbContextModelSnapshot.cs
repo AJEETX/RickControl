@@ -38,43 +38,43 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(8050),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5428),
                             Status = "CREATED"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(8065),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5444),
                             Status = "REJECTED"
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(8067),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5446),
                             Status = "CLOSED"
                         },
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(8069),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5447),
                             Status = "ASSIGNED"
                         },
                         new
                         {
                             Id = 5,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(8071),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5449),
                             Status = "INVESTIGATING"
                         },
                         new
                         {
                             Id = 6,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(8073),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5451),
                             Status = "PENDING"
                         },
                         new
                         {
                             Id = 7,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(8074),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5453),
                             Status = "APPROVED"
                         });
                 });
@@ -121,13 +121,13 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(8447),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5799),
                             Name = "Permanent"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(8449),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 14, DateTimeKind.Local).AddTicks(5802),
                             Name = "Contract"
                         });
                 });
@@ -188,7 +188,7 @@ namespace app.Migrations
                         {
                             Id = 1,
                             Barcode = "EX01",
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(1725),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(9494),
                             Price = 1m,
                             ProductName = "Example Product",
                             Status = "CREATED",
@@ -233,7 +233,7 @@ namespace app.Migrations
                         {
                             Id = 1,
                             Code = "PAM",
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(727),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(8448),
                             Name = "portal-admin"
                         });
                 });
@@ -268,7 +268,7 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(1632),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(9309),
                             StoreCode = "EX01",
                             StoreName = "Example Company"
                         });
@@ -374,19 +374,19 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(336),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(8130),
                             TransactionTypeName = "Stock Receipt"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(359),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(8156),
                             TransactionTypeName = "Stock Out"
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(361),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(8158),
                             TransactionTypeName = "Transfer"
                         });
                 });
@@ -421,21 +421,21 @@ namespace app.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(637),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(8353),
                             Isocode = "CC",
                             UnitOfMeasureName = "Comprehensive"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(647),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(8361),
                             Isocode = "NC",
                             UnitOfMeasureName = "Non-Comprehensive"
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(651),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(8364),
                             Isocode = "OC",
                             UnitOfMeasureName = "Other"
                         });
@@ -498,7 +498,7 @@ namespace app.Migrations
                         {
                             Id = 1,
                             Active = false,
-                            CreateDate = new DateTime(2023, 4, 14, 14, 52, 8, 648, DateTimeKind.Local).AddTicks(1516),
+                            CreateDate = new DateTime(2023, 4, 15, 0, 28, 58, 13, DateTimeKind.Local).AddTicks(9213),
                             Email = "admin@admin.com",
                             EmployeeTypeId = 1,
                             Name = "Admin",
@@ -527,11 +527,9 @@ namespace app.Migrations
 
             modelBuilder.Entity("app.Data.Entity.Role", b =>
                 {
-                    b.HasOne("app.Data.Entity.User", "User")
+                    b.HasOne("app.Data.Entity.User", null)
                         .WithMany("Roles")
                         .HasForeignKey("UserId");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("app.Data.Entity.StoreStock", b =>

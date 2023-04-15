@@ -1,4 +1,5 @@
-﻿using app.Data.Entity;
+﻿using System.Collections.Generic;
+using app.Data.Entity;
 
 namespace app.Model.Domain
 {
@@ -12,5 +13,6 @@ namespace app.Model.Domain
         public int StoreId { get; set; }
         public int? EmployeeTypeId { get; set; } 
         public string EmployeeType { get; set; }
+        public IList<RoleDTO> Roles { get; set; }
     }
 }
