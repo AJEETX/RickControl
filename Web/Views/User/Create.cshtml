@@ -54,7 +54,7 @@
                                 <label asp-for="UserRoles"></label> : 
                                 @foreach (var role in Model.UserRoles)
                                 {
-                                    <input name="roleSelected" type="checkbox" value="@role.Value" /> @role.Text 
+                                    <input name="UserRoleIds" type="checkbox" value=@role.Value /> @role.Text 
                                 }
                             </div>  
                                                                                

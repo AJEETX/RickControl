@@ -34,6 +34,7 @@ namespace app.Model.ViewModel.User
         [Display(Name = "Company name")]
         public int StoreId { get; set; }
         public IEnumerable<SelectListItem> UserRoles { get; set; }
+        public int[] UserRoleIds { get; set; }
         public IEnumerable<SelectListItem> CompanyList { get; set; }
         public IEnumerable<SelectListItem> EmployeeTypeList { get; set; }
 

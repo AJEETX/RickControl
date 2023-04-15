@@ -48,7 +48,14 @@
                                     <option value="">Select Empployee type</option>
                                 </select>
                                 <span asp-validation-for="EmployeeTypeId" class="text-danger"></span>
-                            </div>                            
+                            </div>  
+                           <div class="form-group">
+                                <label asp-for="UserRoles"></label> : 
+                                @foreach (var role in Model.UserRoles)
+                                {
+                                    <input name="UserRoleIds" type="checkbox" value="@role.Value" /> @role.Text 
+                                }
+                            </div>                                                        
                         </div>
                         <div class="card-footer text-right">
                             <a class="btn btn-default" href="/User">Back</a>

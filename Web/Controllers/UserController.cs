@@ -62,6 +62,7 @@ namespace app.Web.Controllers
                     Surname = model.Surname,
                     StoreId = model.StoreId,
                     EmployeeTypeId = model.EmployeeTypeId,
+                    Roles = model.UserRoles.Select(u => new RoleDTO{ Id =int.Parse(u.Value), RoleName = u.Text }).ToList()
                 };
                 var serviceResult = await _userService.AddAsync(userDTO);
                 jsonResultModel = _mapper.Map<JsonResultModel>(serviceResult);
@@ -86,6 +87,8 @@ namespace app.Web.Controllers
             EditUserViewModel model = _mapper.Map<EditUserViewModel>(serviceResult.TransactionResult);
             model.CompanyList = await GetCompanyList();
             model.EmployeeTypeList = await GetEmployeeTypeList();
+            var selectedRoles = (await GetUserRoles()).Where(u => model.UserRoleIds.Any(a => a ==int.Parse(u.Value)));
+            model.UserRoles = selectedRoles.Select(s => new SelectListItem{ Selected =true, Value = s.Value, Text = s.Text });
             return View(model);
         }
 
@@ -132,7 +135,7 @@ namespace app.Web.Controllers
                         Name = l.Name,
                         Surname = l.Surname,
                         EmployeeType = l.EmployeeType?.ToString(),
-                        CompanyName = l.StoreName
+                        CompanyName = l.StoreName,
                     }).ToList();
                     jsonDataTableModel.aaData = listVM;
                     jsonDataTableModel.iTotalDisplayRecords = serviceCountResult.TransactionResult;
@@ -173,7 +176,7 @@ namespace app.Web.Controllers
         {
             var serviceResult = await _roleService.GetAll();
             var result = serviceResult.TransactionResult.Select(s => new SelectListItem{
-                Value = s.RoleCode,
+                Value = s.Id.ToString(),
                 Text = s.RoleName
             });
             return result;
