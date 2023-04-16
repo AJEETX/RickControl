@@ -9,5 +9,10 @@ namespace app.Data.Entity
     {
         public string Name {get; set;}
         public string Code {get; set;}
+        public virtual ICollection<User> Users { get; set; }
+        public Role()
+        {
+            this.Users = new HashSet<User>();
+        }
     }
 }

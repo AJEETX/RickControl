@@ -36,6 +36,7 @@ namespace app.Service.User
                         entity.CreateDate = DateTime.Now;
                         entity.EmployeeTypeId = model.EmployeeTypeId;
                         entity.StoreId = model.StoreId;
+                        entity.Roles = roles.ToList();
                         await _unitOfWork.UserRepository.AddAsync(entity);
                         await _unitOfWork.SaveAsync();
                         result.Id = entity.Id;
