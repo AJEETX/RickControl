@@ -18,7 +18,7 @@ namespace app.Core
         IClaimStatusRepository ClaimStatusRepository { get; }
         IEmployeeRepository EmployeeRepository { get; }
         IUserRepository UserRepository { get; }
-        Task SaveAsync();
+        Task<int> SaveAsync();
         void Save();
         void Commit();
         void RollBack();

@@ -179,9 +179,9 @@ namespace app.Core
             _context.SaveChanges();
         }
 
-        public async Task SaveAsync()
+        public async Task<int> SaveAsync()
         {
-           await _context.SaveChangesAsync();
+           return await _context.SaveChangesAsync();
         }
 
         protected virtual void Dispose(bool disposing)

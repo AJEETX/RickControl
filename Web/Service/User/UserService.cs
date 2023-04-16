@@ -211,14 +211,31 @@ namespace app.Service.User
             {
                 using (_unitOfWork)
                 {
-                    Entity.User entity = await _unitOfWork.UserRepository.GetByIdAsync(model.Id.Value);
+                    Entity.User entity = await _unitOfWork.UserRepository.GetUserWithRoles(model.Id.Value);
                     if (entity != null)
                     {
                         bool emailValidation = await _unitOfWork.UserRepository.EmailValidationUpdateUser(model.Email, model.Id.Value);
 
                         if (!emailValidation)
                         {
+                            var newRoles = await _unitOfWork.RoleRepository.FindAsync( r => model.SelectedRoles.Contains(r.Code));
 
+                            foreach(var role in entity.Roles)
+                            {
+                                entity.Roles.Remove(role);
+                            }
+                            if( newRoles != null)
+                            {
+                                {
+                                    foreach(var onlyRole2Add in newRoles)
+                                    {
+                                        entity.Roles.Add(onlyRole2Add);
+                                    }
+                                }
+                            }
+                        //    _unitOfWork.UserRepository.Update(entity);
+                        //     var rowsAffected = await _unitOfWork.SaveAsync();                            
+ 
                             string oldPassword = entity.Password;
                             if (!string.IsNullOrEmpty(model.Password))
                                 model.Password = model.Password.MD5Hash();
@@ -229,14 +246,10 @@ namespace app.Service.User
                             entity.Name = model.Name;
                             entity.StoreId = model.StoreId;
                             entity.Surname = model.Surname;
-                            var newRoles = await _unitOfWork.RoleRepository.FindAsync( r => model.SelectedRoles.Contains(r.Code));
-                            entity.Roles = newRoles.ToList();
-                            _unitOfWork.UserRepository.Update(entity);
-                            await _unitOfWork.SaveAsync();
 
-                            // var currentEntity = await _unitOfWork.UserRepository.GetUserWithRoles(model.Id.Value);
-                            // currentEntity.Roles = newRoles.ToArray();
-                            // await _unitOfWork.SaveAsync();
+                           _unitOfWork.UserRepository.Update(entity);
+                            var anotherRowsAffected = await _unitOfWork.SaveAsync();                            
+                            
 
                             result.UserMessage = CommonMessages.MSG0001;
                         }
