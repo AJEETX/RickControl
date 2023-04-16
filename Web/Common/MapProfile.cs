@@ -131,7 +131,18 @@ namespace app.Mapper
             CreateMap<UnitOfMeasure, UnitOfMeasureDTO>();
             CreateMap<UnitOfMeasureDTO, UnitOfMeasure>();
 
-            CreateMap<User, UserDTO>();
+            CreateMap<Role, RoleDTO>()
+            .ForMember(dm => dm.RoleCode, vm => vm.MapFrom(vmf => vmf.Code))
+            .ForMember(dm => dm.RoleName, vm => vm.MapFrom(vmf => vmf.Name));
+
+            CreateMap<Role, RoleDTO>()
+                        .ForMember(dm => dm.RoleCode, vm => vm.MapFrom(vmf => vmf.Code))
+                        .ForMember(dm => dm.RoleName, vm => vm.MapFrom(vmf => vmf.Name));
+
+
+            CreateMap<User, UserDTO>()
+            .ForMember(dm => dm.SelectedRoles, vm => vm.MapFrom(vmf => vmf.Roles));
+
             CreateMap<UserDTO, User>();
 
 

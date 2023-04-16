@@ -58,10 +58,6 @@
                                     type="checkbox" 
                                     name="SelectedUserRoleIds" 
                                     value=@role.Value 
-                                    @if(Model.SelectedUserRoleIds.Contains(@role.Value))
-                                    {
-                                        <text> checked </text> <span> |||| </span>
-                                    }
                                     /> @role.Text 
                                 }
                             </div>  

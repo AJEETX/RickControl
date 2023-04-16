@@ -30,14 +30,18 @@ namespace app.Service.User
 
                     if (!emailValidation)
                     {
-                        var roles = await _unitOfWork.RoleRepository.FindAsync( r => model.SelectedRoles.Contains(r.Code));
                         Entity.User entity = _mapper.Map<Data.Entity.User>(model);
                         entity.Password = model.Password.MD5Hash();
                         entity.CreateDate = DateTime.Now;
                         entity.EmployeeTypeId = model.EmployeeTypeId;
                         entity.StoreId = model.StoreId;
-                        entity.Roles = roles.ToList();
                         await _unitOfWork.UserRepository.AddAsync(entity);
+                        await _unitOfWork.SaveAsync();
+
+                        var roles = await _unitOfWork.RoleRepository.FindAsync( r => model.SelectedRoles.Contains(r.Code));
+
+                        var currentUser = await _unitOfWork.UserRepository.GetByIdAsync(entity.Id);
+                        currentUser.Roles = roles.ToList();
                         await _unitOfWork.SaveAsync();
                         result.Id = entity.Id;
                         result.UserMessage = CommonMessages.MSG0001;
@@ -144,8 +148,10 @@ namespace app.Service.User
             {
                 using (_unitOfWork)
                 {
-                    Entity.User entity = await _unitOfWork.UserRepository.GetByIdAsync(id);
+                    Entity.User entity = await _unitOfWork.UserRepository.GetUserWithRoles(id);
+                    var selectedRoleIds = entity.Roles.Select(r => r.Code);
                     result.TransactionResult = _mapper.Map<UserDTO>(entity);
+                    result.TransactionResult.SelectedRoles = selectedRoleIds.ToArray();
                 }
             }
             catch (Exception ex)
