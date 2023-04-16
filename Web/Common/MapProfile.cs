@@ -135,15 +135,18 @@ namespace app.Mapper
             .ForMember(dm => dm.RoleCode, vm => vm.MapFrom(vmf => vmf.Code))
             .ForMember(dm => dm.RoleName, vm => vm.MapFrom(vmf => vmf.Name));
 
-            CreateMap<Role, RoleDTO>()
-                        .ForMember(dm => dm.RoleCode, vm => vm.MapFrom(vmf => vmf.Code))
-                        .ForMember(dm => dm.RoleName, vm => vm.MapFrom(vmf => vmf.Name));
+            CreateMap<RoleDTO, Role>()
+                .ForMember(dm => dm.Code, vm => vm.MapFrom(vmf => vmf.RoleCode))
+                .ForMember(dm => dm.Name, vm => vm.MapFrom(vmf => vmf.RoleName));
 
 
             CreateMap<User, UserDTO>()
-            .ForMember(dm => dm.SelectedRoles, vm => vm.MapFrom(vmf => vmf.Roles));
+                .ForMember(dm => dm.Name, vm => vm.MapFrom(vmf => vmf.Name))
+                .ForMember(dm => dm.Surname, vm => vm.MapFrom(vmf => vmf.Surname));
 
-            CreateMap<UserDTO, User>();
+            CreateMap<UserDTO, User>()
+                .ForMember(dm => dm.Name, vm => vm.MapFrom(vmf => vmf.Name))
+                .ForMember(dm => dm.Surname, vm => vm.MapFrom(vmf => vmf.Surname));
 
 
             CreateMap<Store, StoreDTO>();

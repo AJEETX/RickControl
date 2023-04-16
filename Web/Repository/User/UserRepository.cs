@@ -32,5 +32,13 @@ namespace app.Repository.User
         {
             return await dbContext.User.Include(x => x.Roles).FirstOrDefaultAsync(x => x.Id == id);
         }
+
+        public async Task UpdateUserWithRoles(Data.Entity.User user)
+        {
+            var usersWithRoles = await GetUserWithRoles(user.Id);
+            usersWithRoles.Roles = user.Roles;
+            dbContext.Entry(usersWithRoles.Roles).State = EntityState.Modified;
+            dbContext.Entry(usersWithRoles).State = EntityState.Modified;
+        }
     }
 }

@@ -8,5 +8,6 @@ namespace app.Core.Repository
         Task<bool> EmailValidationUpdateUser(string email, int Id);
         Task<bool> Login(string email, string password);
         Task<Data.Entity.User> GetUserWithRoles(int id);
+        Task UpdateUserWithRoles(Data.Entity.User user);
     }
 }

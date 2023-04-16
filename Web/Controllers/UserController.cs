@@ -59,7 +59,7 @@ namespace app.Web.Controllers
                 UserDTO userDTO = new UserDTO{ 
                     Email = model.Email,
                     Password = model.Password,
-                    Name = model.Surname,
+                    Name = model.Name,
                     Surname = model.Surname,
                     StoreId = model.StoreId,
                     EmployeeTypeId = model.EmployeeTypeId,

@@ -84,7 +84,7 @@ namespace app.Service.User
                         Id = l.Id,
                         Email = l.Email,
                         Password = l.Password,
-                        Name = l.Surname,
+                        Name = l.Name,
                         Surname = l.Surname,
                         StoreName = l.Store?.StoreName,
                         EmployeeType = l.EmployeeType.Name,
@@ -211,7 +211,7 @@ namespace app.Service.User
             {
                 using (_unitOfWork)
                 {
-                    Entity.User entity = await _unitOfWork.UserRepository.GetByIdAsync(model.Id.Value);
+                    Entity.User entity = await _unitOfWork.UserRepository.GetUserWithRoles(model.Id.Value);
                     if (entity != null)
                     {
                         bool emailValidation = await _unitOfWork.UserRepository.EmailValidationUpdateUser(model.Email, model.Id.Value);
@@ -225,10 +225,16 @@ namespace app.Service.User
                             else
                                 model.Password = oldPassword;
 
-                            _mapper.Map(model, entity);
+                            entity.EmployeeTypeId = model.EmployeeTypeId;
+                            entity.Name = model.Name;
+                            entity.StoreId = model.StoreId;
+                            entity.Surname = model.Surname;
+                            // var newRoles = await _unitOfWork.RoleRepository.FindAsync( r => model.SelectedRoles.Contains(r.Code));
+                            // entity.Roles = newRoles.ToArray();
                             _unitOfWork.UserRepository.Update(entity);
-
                             await _unitOfWork.SaveAsync();
+
+
                             result.UserMessage = CommonMessages.MSG0001;
                         }
                         else
