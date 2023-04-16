@@ -36,11 +36,14 @@ namespace app.Web.Controllers
             JsonResultModel jsonResultModel = new JsonResultModel();
             try
             {
-                ServiceResult result = await _userService.Login(model.Email, model.Password);
+                var (result, roles) = await _userService.Login(model.Email, model.Password);
                 if (result.IsSucceeded)
                 {
                     var claims = new List<Claim> { new Claim(ClaimTypes.Name, model.Email) };
-                    claims.Add(new Claim(ClaimTypes.Role, "CREATOR"));
+                    foreach(var role in roles)
+                    {
+                        claims.Add(new Claim(ClaimTypes.Role, role));
+                    }
                     var userIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
