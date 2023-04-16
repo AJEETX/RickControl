@@ -15,7 +15,7 @@ namespace app.Data.Seed
             builder.HasData(new User
             {
                 Id = 1,
-                Email = "admin@admin.com",
+                Email = app.Common.Constants.ADMIN_EMAIL,
                 Name = "Admin",
                 Surname = "Admin",
                 Password = adminPassword.MD5Hash(),

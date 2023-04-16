@@ -40,6 +40,11 @@ namespace app.Web.Controllers
                 if (result.IsSucceeded)
                 {
                     var claims = new List<Claim> { new Claim(ClaimTypes.Name, model.Email) };
+                    if(model.Email == app.Common.Constants.ADMIN_EMAIL)
+                    {
+                        claims.Add(new Claim(ClaimTypes.Role, app.Common.Constants.ADMIN_ROLE));
+                    }
+                    
                     foreach(var role in roles)
                     {
                         claims.Add(new Claim(ClaimTypes.Role, role));
