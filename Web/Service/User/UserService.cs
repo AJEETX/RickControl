@@ -211,7 +211,7 @@ namespace app.Service.User
             {
                 using (_unitOfWork)
                 {
-                    Entity.User entity = await _unitOfWork.UserRepository.GetUserWithRoles(model.Id.Value);
+                    Entity.User entity = await _unitOfWork.UserRepository.GetByIdAsync(model.Id.Value);
                     if (entity != null)
                     {
                         bool emailValidation = await _unitOfWork.UserRepository.EmailValidationUpdateUser(model.Email, model.Id.Value);
@@ -229,11 +229,14 @@ namespace app.Service.User
                             entity.Name = model.Name;
                             entity.StoreId = model.StoreId;
                             entity.Surname = model.Surname;
-                            // var newRoles = await _unitOfWork.RoleRepository.FindAsync( r => model.SelectedRoles.Contains(r.Code));
-                            // entity.Roles = newRoles.ToArray();
+                            var newRoles = await _unitOfWork.RoleRepository.FindAsync( r => model.SelectedRoles.Contains(r.Code));
+                            entity.Roles = newRoles.ToList();
                             _unitOfWork.UserRepository.Update(entity);
                             await _unitOfWork.SaveAsync();
 
+                            // var currentEntity = await _unitOfWork.UserRepository.GetUserWithRoles(model.Id.Value);
+                            // currentEntity.Roles = newRoles.ToArray();
+                            // await _unitOfWork.SaveAsync();
 
                             result.UserMessage = CommonMessages.MSG0001;
                         }

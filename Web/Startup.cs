@@ -33,14 +33,23 @@ namespace app.Web
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<RiskControlDbContext>(options =>
             {
                 options.UseSqlite(Configuration["ConnectionStrings:SqlConStr"].ToString());
-            });
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                options.EnableSensitiveDataLogging();
+            }).AddLogging();
+            
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+                AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+                {
+                    options.LoginPath = new PathString("/auth/login");
+                    options.Cookie.HttpOnly = true;
+                    options.ExpireTimeSpan = TimeSpan.FromSeconds(120);
+                    options.SlidingExpiration = true;
+                });
             services.AddAutoMapper(c => c.AddProfile<app.Mapper.MapProfile>(), typeof(Startup));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<ICategoryService, CategoryService>();
@@ -55,20 +64,13 @@ namespace app.Web
             services.AddScoped<ITransactionService, TransactionService>();
             services.AddScoped<IUnitOfWorks, UnitOfWork>();
             services.AddControllersWithViews().
-                    AddJsonOptions(options =>
-                    {
-                        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-                        options.JsonSerializerOptions.PropertyNamingPolicy = null;
-                    }).AddRazorRuntimeCompilation();
+                AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                }).AddRazorRuntimeCompilation();
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
-                AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
-                     {
-                         options.LoginPath = new PathString("/auth/login");
-                         options.Cookie.HttpOnly = true;
-                         options.ExpireTimeSpan = TimeSpan.FromMinutes(120);
-                         options.SlidingExpiration = true;
-                     });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

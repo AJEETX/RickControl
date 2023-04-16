@@ -40,6 +40,7 @@ namespace app.Web.Controllers
                 if (result.IsSucceeded)
                 {
                     var claims = new List<Claim> { new Claim(ClaimTypes.Name, model.Email) };
+                    claims.Add(new Claim(ClaimTypes.Role, "CREATOR"));
                     var userIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);

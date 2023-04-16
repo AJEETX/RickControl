@@ -8,6 +8,7 @@ using app.Model.Service;
 using app.Model.ViewModel.JsonResult;
 using app.Model.ViewModel.User;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -39,6 +40,7 @@ namespace app.Web.Controllers
             return View(model);
         }
 
+        [HttpGet, Authorize(Roles ="CREATOR")]
         public async Task<IActionResult> Create()
         {
             var model = new CreateUserViewModel();

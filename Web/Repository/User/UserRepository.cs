@@ -35,10 +35,11 @@ namespace app.Repository.User
 
         public async Task UpdateUserWithRoles(Data.Entity.User user)
         {
-            var usersWithRoles = await GetUserWithRoles(user.Id);
-            usersWithRoles.Roles = user.Roles;
-            dbContext.Entry(usersWithRoles.Roles).State = EntityState.Modified;
-            dbContext.Entry(usersWithRoles).State = EntityState.Modified;
-        }
+            dbContext.User.Attach(user);
+            var entry = dbContext.Entry(user);
+            entry.State = EntityState.Modified;
+            entry.Property(p => p.Roles).IsModified = true;
+            await Task.Delay(1);
+         }
     }
 }

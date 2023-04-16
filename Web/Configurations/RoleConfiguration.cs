@@ -13,7 +13,6 @@ namespace app.Data.Configurations
             builder.Property(x => x.Id).UseIdentityColumn();
             builder.Property(x => x.Name).IsRequired().HasMaxLength(30);
             builder.Property(x => x.Code).IsRequired().HasMaxLength(3);
-            builder.HasMany<User>(r => r.Users).WithMany(u => u.Roles);
             builder.ToTable("Role");
         }
     }
