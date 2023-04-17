@@ -4,7 +4,7 @@
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-header">Dashboard</li>
-        <li class="nav-item">
+        @* <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
               <p>
@@ -32,8 +32,7 @@
                 </a>
               </li>
             </ul>
-          </li>
-        <li class="nav-header">Admin</li>
+          </li> *@
         <li class="nav-item">
             @if(User.IsInRole(Constants.ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_CREATOR_ROLE))
             {
@@ -45,6 +44,7 @@
             </a>
             }
         </li>
+        <li class="nav-header">Admin</li>
         <li class="nav-item">
             @if(User.IsInRole(Constants.ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_CREATOR_ROLE))
             {

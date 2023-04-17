@@ -35,6 +35,7 @@ namespace app.Service.User
                         entity.CreateDate = DateTime.Now;
                         entity.EmployeeTypeId = model.EmployeeTypeId;
                         entity.StoreId = model.StoreId;
+                        entity.Image = model.Image;
                         entity.CategoryId = model.CategoryId;
                         await _unitOfWork.UserRepository.AddAsync(entity);
                         await _unitOfWork.SaveAsync();
@@ -88,6 +89,7 @@ namespace app.Service.User
                         Name = l.Name,
                         Surname = l.Surname,
                         StoreName = l.Store?.StoreName,
+                        Image = l.Image,
                         CategoryName = l.Category?.CategoryName,
                         EmployeeType = l.EmployeeType.Name,
                     });
@@ -254,7 +256,7 @@ namespace app.Service.User
                             entity.StoreId = model.StoreId;
                             entity.CategoryId = model.CategoryId;
                             entity.Surname = model.Surname;
-
+                            entity.Image = model.Image;
                            _unitOfWork.UserRepository.Update(entity);
                             var anotherRowsAffected = await _unitOfWork.SaveAsync();                            
                             
