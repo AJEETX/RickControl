@@ -13,7 +13,7 @@ namespace app.Data.Seed
             builder.HasData(new Product
             {
                 Id = 1,
-                ProductName = "Example Product",
+                ProductName = "Example Claim case",
                 Barcode = "EX01",
                 CreateDate = DateTime.Now,
                 UnitOfMeasureId = 1,

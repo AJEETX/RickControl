@@ -49,6 +49,9 @@ $(document).ready(function () {
                     mDataProp: "CompanyName"
                 },
                 {
+                    mDataProp: "CategoryName"
+                },
+                {
                     mDataProp: "EmployeeType"
                 },
                 {

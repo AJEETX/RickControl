@@ -35,6 +35,7 @@ namespace app.Service.User
                         entity.CreateDate = DateTime.Now;
                         entity.EmployeeTypeId = model.EmployeeTypeId;
                         entity.StoreId = model.StoreId;
+                        entity.CategoryId = model.CategoryId;
                         await _unitOfWork.UserRepository.AddAsync(entity);
                         await _unitOfWork.SaveAsync();
 
@@ -71,11 +72,11 @@ namespace app.Service.User
                     IEnumerable<Entity.User> list = await _unitOfWork
                                                                 .UserRepository
                                                                 .FindAsync(filter: x => (string.IsNullOrEmpty(criteria.Email) || x.Email.Contains(criteria.Email)) &&
-                                                                                        (criteria.StoreId == 0 || x.StoreId == criteria.StoreId) &&
+                                                                                        (criteria.StoreId == null || x.StoreId == criteria.StoreId) &&
                                                                                         (criteria.EmployeeTypeId == null || x.EmployeeTypeId == criteria.EmployeeTypeId) &&
                                                                                         (string.IsNullOrEmpty(criteria.Name) || x.Name.Contains(criteria.Name)) &&
                                                                                         (string.IsNullOrEmpty(criteria.Surname) || x.Surname.Contains(criteria.Surname)),
-                                                                           includes: new List<string>() { "Store", "EmployeeType" },
+                                                                           includes: new List<string>() { "Store", "Category", "EmployeeType" },
                                                                            orderByDesc: x => x.Id,
                                                                            skip: criteria.PageNumber,
                                                                            take: criteria.RecordCount);
@@ -87,6 +88,7 @@ namespace app.Service.User
                         Name = l.Name,
                         Surname = l.Surname,
                         StoreName = l.Store?.StoreName,
+                        CategoryName = l.Category?.CategoryName,
                         EmployeeType = l.EmployeeType.Name,
                     });
                 }
@@ -250,6 +252,7 @@ namespace app.Service.User
                             entity.EmployeeTypeId = model.EmployeeTypeId;
                             entity.Name = model.Name;
                             entity.StoreId = model.StoreId;
+                            entity.CategoryId = model.CategoryId;
                             entity.Surname = model.Surname;
 
                            _unitOfWork.UserRepository.Update(entity);

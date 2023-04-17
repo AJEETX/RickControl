@@ -1,4 +1,6 @@
 ﻿@model app.Model.ViewModel.User.SearchUserViewModel
+@using app.Common;
+
 @{
     ViewData["Title"] = "User List";
 }
@@ -52,7 +54,10 @@
                             <div class="col-md-12 text-right">
                                 <button id="btnClear" type="button" class="btn btn-secondary btn-sm"><i class="fas fa-sync-alt"></i> Clear</button>
                                 <button id="btnFilter" type="button" class="btn btn-primary btn-sm"><i class="fas fa-search"></i> Search</button>
-                                <a class="btn btn-info btn-sm" href="/User/Create"><i class="fas fa-plus"></i> Create User</a>
+                                @if(User.IsInRole(Constants.ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_ADMIN_ROLE))
+                                {
+                                    <a class="btn btn-info btn-sm" href="/User/Create"><i class="fas fa-plus"></i> Create User</a>
+                                }
                             </div>
                         </div>
                     </div>
@@ -74,6 +79,7 @@
                                     <th>Name</th>
                                     <th>Surname</th>
                                     <th>Company Name</th>
+                                    <th>Agency Name</th>
                                     <th>Employee Type</th>
                                     <th style="width:15%">Actions</th>
                                 </tr>

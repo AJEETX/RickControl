@@ -28,13 +28,16 @@ namespace app.Model.ViewModel.User
         [MaxLength(30)]
         [Display]
         public string Surname { get; set; }
-        [Display(Name = "Company")]
-        public int StoreId { get; set; }
+        [Display(Name = "Company name")]
+        public int? StoreId { get; set; }
+        [Display(Name = "Agency name")]
+        public int? CategoryId { get; set; }            
         [Display(Name = "Employee type")]
         public int? EmployeeTypeId { get; set; }
         public IEnumerable<SelectListItem> UserRoles { get; set; }
         [Display(Name = "User roles")]
         public IList<string> SelectedUserRoleIds { get; set; } = new List<string>();
+        public IEnumerable<SelectListItem> AgencyList { get; set; }
         public IEnumerable<SelectListItem> CompanyList { get; set; }
         public IEnumerable<SelectListItem> EmployeeTypeList { get; set; }     
     }

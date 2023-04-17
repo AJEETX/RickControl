@@ -9,7 +9,7 @@ namespace app.Data.Seed
     {
         public void Configure(EntityTypeBuilder<Store> builder)
         {
-            builder.HasData(new Store { Id = 1, StoreCode = "EX01", StoreName = "Example Company", CreateDate = DateTime.Now });
+            builder.HasData(new Store { Id = 1, StoreCode = "EX01", StoreName = "Example Client Company", CreateDate = DateTime.Now });
         }
     }
 }

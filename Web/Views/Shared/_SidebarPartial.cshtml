@@ -1,10 +1,11 @@
 ﻿@using Microsoft.AspNetCore.Http;
+@using app.Common;
 
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-header">Admin</li>
         <li class="nav-item">
-            @if(User.IsInRole("PAM"))
+            @if(User.IsInRole(Constants.ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_CREATOR_ROLE))
             {
             <a href="/Product" class="nav-link">
                 <i class="nav-icon fas fa-barcode"></i>
@@ -15,47 +16,64 @@
             }
         </li>
         <li class="nav-item">
+            @if(User.IsInRole(Constants.ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_CREATOR_ROLE))
+            {
             <a href="/Category" class="nav-link">
                 <i class="nav-icon fas fa-folder"></i>
                 <p>
                     Agency
                 </p>
             </a>
+            }
         </li>
         <li class="nav-item">
-            <a href="/UnitOfMeasure" class="nav-link">
+            @if(User.IsInRole(Constants.ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_ADMIN_ROLE))
+            {
+                <a href="/UnitOfMeasure" class="nav-link">
                 <i class="nav-icon fas fa-box-open"></i>
                 <p>
                     Case types
                 </p>
             </a>
+            }
         </li>
 
         <li class="nav-item">
-            <a href="/Store" class="nav-link">
+            @if(User.IsInRole(Constants.ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_ADMIN_ROLE))
+            {
+                <a href="/Store" class="nav-link">
                 <i class="nav-icon fas fa-building"></i>
                 <p>
                     Company
                 </p>
             </a>
+            }
         </li>
         
         <li class="nav-item">
-            <a href="/User" class="nav-link">
+            @if(User.IsInRole(Constants.ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_ADMIN_ROLE))
+            {
+                <a href="/User" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                     User
                 </p>
             </a>
+            }
         </li>
         <li class="nav-item">
-            <a href="/Role" class="nav-link">
+            @if(User.IsInRole(Constants.ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_ADMIN_ROLE))
+            {
+                <a href="/Role" class="nav-link">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                     Role
                 </p>
             </a>
+            }
         </li>  
+       @if(User.IsInRole(Constants.ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_ADMIN_ROLE))
+       {
        <li class="nav-header">Invoice</li>
         <li class="nav-item">
             <a href="/Transaction" class="nav-link">
@@ -76,6 +94,7 @@
                 <p>Claims Detail</p>
             </a>
         </li>              
+       }
         <li class="nav-header"></li>
         <li class="nav-item">
             <a href="/Auth/Logout" class="nav-link">

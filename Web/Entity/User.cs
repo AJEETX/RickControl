@@ -12,6 +12,8 @@ namespace app.Data.Entity
         public bool Active { get; set; }
         public int? StoreId { get; set; } = default!;
         public virtual Store Store { get; set; }
+        public int? CategoryId { get; set; } = default!;
+        public virtual Category Category { get; set; }        
         public int? EmployeeTypeId { get; set; } = default!;
         public virtual EmployeeType EmployeeType { get; set; }
         public virtual ICollection<Role>  Roles  { get; set; } 

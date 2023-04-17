@@ -20,30 +20,34 @@ namespace app.Web.Controllers
         private readonly IStoreService _storeService;
         private readonly IEmployeeService _employeeService;
         private readonly IRoleService _roleService;
+        private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
 
         public UserController(IUserService userService, IStoreService storeService, IEmployeeService employeeService,
-        IRoleService roleService, IMapper mapper)
+        IRoleService roleService, ICategoryService categoryService, IMapper mapper)
         {
             _userService = userService;
             _storeService = storeService;
             _employeeService = employeeService;
             _roleService = roleService;
+            _categoryService = categoryService;
             _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
         {
             var model = new SearchUserViewModel();
+            model.AgencyList = await GetAgencyList();
             model.EmployeeTypeList = await GetEmployeeTypeList() ;
             model.CompanyList = await GetCompanyList();
             return View(model);
         }
 
-        [HttpGet, Authorize(Roles ="CREATOR")]
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             var model = new CreateUserViewModel();
+            model.AgencyList = await GetAgencyList();
             model.EmployeeTypeList = await GetEmployeeTypeList() ;
             model.CompanyList = await GetCompanyList();
             model.UserRoles = await GetUserRoles();
@@ -64,6 +68,7 @@ namespace app.Web.Controllers
                     Name = model.Name,
                     Surname = model.Surname,
                     StoreId = model.StoreId,
+                    CategoryId = model.CategoryId,
                     EmployeeTypeId = model.EmployeeTypeId,
                     SelectedRoles = model.SelectedUserRoleIds
                 };
@@ -88,6 +93,7 @@ namespace app.Web.Controllers
         {
             var serviceResult = await _userService.GetById(id);
             EditUserViewModel model = _mapper.Map<EditUserViewModel>(serviceResult.TransactionResult);
+            model.AgencyList = await GetAgencyList();
             model.CompanyList = await GetCompanyList();
             model.EmployeeTypeList = await GetEmployeeTypeList();
             model.UserRoles = await GetUserRoles();
@@ -138,10 +144,11 @@ namespace app.Web.Controllers
                         Surname = l.Surname,
                         EmployeeType = l.EmployeeType?.ToString(),
                         CompanyName = l.StoreName,
+                        CategoryName = l.CategoryName
                     }).ToList();
                     jsonDataTableModel.aaData = listVM;
                     jsonDataTableModel.iTotalDisplayRecords = serviceCountResult.TransactionResult;
-                    jsonDataTableModel.iTotalRecords = serviceCountResult.TransactionResult;
+                    jsonDataTableModel.iTotalRecords = listVM.Count;
                 }
                 else
                 {
@@ -182,6 +189,12 @@ namespace app.Web.Controllers
                 Text = s.RoleName
             });
             return result;
+        }
+        private async Task<IEnumerable<SelectListItem>> GetAgencyList()
+        {
+            ServiceResult<IEnumerable<CategoryDTO>> serviceResult = await _categoryService.GetAll();
+            IEnumerable<SelectListItem> drpAgencyList = serviceResult.TransactionResult.Select(s => new SelectListItem { Text = s.CategoryName, Value = s.Id.ToString() });
+            return drpAgencyList;
         }
         private async Task<IEnumerable<SelectListItem>> GetCompanyList()
         {

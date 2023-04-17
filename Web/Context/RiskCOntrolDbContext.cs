@@ -40,6 +40,7 @@ namespace app.Data.Context
             modelBuilder.ApplyConfiguration(new RoleSeed());
             modelBuilder.ApplyConfiguration(new UserSeed());
             modelBuilder.ApplyConfiguration(new StoreSeed());
+            modelBuilder.ApplyConfiguration(new CategorySeed());
             modelBuilder.ApplyConfiguration(new ProductSeed());
             modelBuilder.ApplyConfiguration(new StatusSeed());
             modelBuilder.ApplyConfiguration(new EmployeeTypeSeed());

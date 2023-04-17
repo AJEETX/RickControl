@@ -9,5 +9,6 @@ namespace app.Model.ViewModel.User
         public string Surname { get; set; }
         public string EmployeeType { get; set; }
         public string CompanyName { get; set; }
+        public string CategoryName { get; set; }
     }
 }

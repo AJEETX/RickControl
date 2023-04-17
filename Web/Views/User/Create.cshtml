@@ -1,4 +1,6 @@
 ﻿@model app.Model.ViewModel.User.CreateUserViewModel
+@using app.Common;
+
 @{
     ViewData["Title"] = "Create User";
 }
@@ -43,23 +45,36 @@
                                 </select>
                                 <span asp-validation-for="EmployeeTypeId" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="StoreId"></label>
-                                <select asp-for="StoreId" class="form-control" asp-items="Model.CompanyList">
-                                    <option value="">Select company</option>
-                                </select>
-                                <span asp-validation-for="StoreId" class="text-danger"></span>
-                            </div>  
+                            @if(User.IsInRole(Constants.ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_ADMIN_ROLE))
+                            {
+                                <div class="form-group">
+                                    <label asp-for="StoreId"></label>
+                                    <select asp-for="StoreId" class="form-control" asp-items="Model.CompanyList">
+                                        <option value="">Select company</option>
+                                    </select>
+                                    <span asp-validation-for="StoreId" class="text-danger"></span>
+                                </div> 
+                                <div class="form-group">
+                                    <label asp-for="CategoryId"></label>
+                                    <select asp-for="CategoryId" class="form-control" asp-items="Model.AgencyList">
+                                        <option value="">Select agency</option>
+                                    </select>
+                                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                                </div>  
+                            } 
                            <div class="form-group">
-                                <label asp-for="SelectedUserRoleIds"></label> : 
-                                @foreach (var role in Model.UserRoles)
-                                {
-                                    <input 
-                                    type="checkbox" 
-                                    name="SelectedUserRoleIds" 
-                                    value=@role.Value 
-                                    /> @role.Text 
-                                }
+                                <label asp-for="SelectedUserRoleIds"></label> : <br />
+                                <div style="margin-left: 25%;">
+                                    @foreach (var role in Model.UserRoles)
+                                    {
+                                        <input 
+                                        type="checkbox" 
+                                        name="SelectedUserRoleIds" 
+                                        value=@role.Value 
+                                        /> @role.Text 
+                                        <br />
+                                    }
+                                </div>
                             </div>  
                                                                                
                         </div>
