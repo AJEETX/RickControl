@@ -147,7 +147,7 @@ namespace app.Web.Controllers
                         CategoryName = l.CategoryName
                     }).ToList();
                     jsonDataTableModel.aaData = listVM;
-                    jsonDataTableModel.iTotalDisplayRecords = serviceCountResult.TransactionResult;
+                    jsonDataTableModel.iTotalDisplayRecords = listVM.Count;
                     jsonDataTableModel.iTotalRecords = listVM.Count;
                 }
                 else
