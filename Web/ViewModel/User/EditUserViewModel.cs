@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using app.Data.Entity;
 using app.Model.ViewModel.Base;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace app.Model.ViewModel.User
@@ -31,7 +32,13 @@ namespace app.Model.ViewModel.User
         [Display(Name = "Company name")]
         public int? StoreId { get; set; }
         [Display(Name = "Agency name")]
-        public int? CategoryId { get; set; }            
+        public int? CategoryId { get; set; }    
+        [Display(Name = "Image")]
+        public string Image { get; set; }            
+        [Display(Name = "Image")]
+        [RegularExpression(@"^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$")]
+        public IFormFile ImageFile { get; set; }            
+        public string ImageDisplayURL { get; set; }
         [Display(Name = "Employee type")]
         public int? EmployeeTypeId { get; set; }
         public IEnumerable<SelectListItem> UserRoles { get; set; }

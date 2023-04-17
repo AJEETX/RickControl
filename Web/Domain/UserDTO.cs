@@ -9,6 +9,7 @@ namespace app.Model.Domain
         public string Password { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public string Image { get; set; }
         public string? StoreName { get; set; } = string.Empty;
         public int? StoreId { get; set; }
         public string? CategoryName { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using app.Core.Service;
@@ -9,6 +10,7 @@ using app.Model.ViewModel.JsonResult;
 using app.Model.ViewModel.User;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -21,16 +23,18 @@ namespace app.Web.Controllers
         private readonly IEmployeeService _employeeService;
         private readonly IRoleService _roleService;
         private readonly ICategoryService _categoryService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IMapper _mapper;
 
         public UserController(IUserService userService, IStoreService storeService, IEmployeeService employeeService,
-        IRoleService roleService, ICategoryService categoryService, IMapper mapper)
+        IRoleService roleService, ICategoryService categoryService, IWebHostEnvironment webHostEnvironment, IMapper mapper)
         {
             _userService = userService;
             _storeService = storeService;
             _employeeService = employeeService;
             _roleService = roleService;
             _categoryService = categoryService;
+            _webHostEnvironment = webHostEnvironment;
             _mapper = mapper;
         }
 
@@ -61,6 +65,15 @@ namespace app.Web.Controllers
             JsonResultModel jsonResultModel = new JsonResultModel();
             try
             {
+                if (model.ImageFile != null && model.ImageFile.Length > 0)
+                {
+                    string newFileName = Guid.NewGuid().ToString();
+                    string fileExtension = Path.GetExtension(model.ImageFile.FileName);
+                    newFileName += fileExtension;
+                    var upload = Path.Combine(_webHostEnvironment.WebRootPath, "upload", newFileName);
+                    model.ImageFile.CopyTo(new FileStream(upload, FileMode.Create));
+                    model.Image = newFileName;
+                }
 
                 UserDTO userDTO = new UserDTO{ 
                     Email = model.Email,
@@ -97,6 +110,8 @@ namespace app.Web.Controllers
             model.CompanyList = await GetCompanyList();
             model.EmployeeTypeList = await GetEmployeeTypeList();
             model.UserRoles = await GetUserRoles();
+            if (!string.IsNullOrEmpty(model.Image))
+                model.ImageDisplayURL = Path.Combine(_webHostEnvironment.WebRootPath, "upload", model.Image);
             return View(model);
         }
 
@@ -107,6 +122,15 @@ namespace app.Web.Controllers
             JsonResultModel jsonResultModel = new JsonResultModel();
             try
             {
+                if (model.ImageFile != null && model.ImageFile.Length > 0)
+                {
+                    string newFileName = Guid.NewGuid().ToString();
+                    string fileExtension = Path.GetExtension(model.ImageFile.FileName);
+                    newFileName += fileExtension;
+                    var upload = Path.Combine(_webHostEnvironment.WebRootPath, "upload", newFileName);
+                    model.ImageFile.CopyTo(new FileStream(upload, FileMode.Create));
+                    model.Image = newFileName;
+                }
                 UserDTO userDTO = _mapper.Map<UserDTO>(model);
                 var serviceResult = await _userService.Update(userDTO);
                 jsonResultModel = _mapper.Map<JsonResultModel>(serviceResult);
@@ -142,6 +166,7 @@ namespace app.Web.Controllers
                         Email = l.Email,
                         Name = l.Name,
                         Surname = l.Surname,
+                        ImageDisplay = l.Image ?? "no-image.PNG",
                         EmployeeType = l.EmployeeType?.ToString(),
                         CompanyName = l.StoreName,
                         CategoryName = l.CategoryName

@@ -57,6 +57,20 @@
                                 </select>
                                 <span asp-validation-for="CategoryId" class="text-danger"></span>
                             </div>
+                            @if (!string.IsNullOrEmpty(Model.Image))
+                            {
+                                <div class="form-group" id="delete-image-main">
+                                    <label asp-for="ImageFile"></label>
+                                    <img height="150" src="/upload/@Model.Image" />
+                                    <button id="btnDeleteImage" data-id="@Model.Id" type="button" class="btn btn-danger">Delete Image</button>
+                                </div>
+                            }
+                            <div class="form-group">
+                                <label asp-for="ImageFile"></label>
+                                <input asp-for="ImageFile" type="file" class="form-control">
+                                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                                <input type="hidden" asp-for="Image" />
+                            </div>
                             <div class="form-group">
                                 <label asp-for="SelectedUserRoleIds"></label> : <br />
                                 <div style="margin-left: 25%;">

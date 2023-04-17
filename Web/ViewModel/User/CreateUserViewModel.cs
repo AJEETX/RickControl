@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using app.Data.Entity;
 using app.Model.ViewModel.Base;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace app.Model.ViewModel.User
@@ -28,7 +29,11 @@ namespace app.Model.ViewModel.User
         [MaxLength(30)]
         [Display]
         public string Surname { get; set; }
-
+        [Display(Name = "Image")]
+        public string Image { get; set; }
+        [Display(Name = "Image")]
+        [RegularExpression(@"^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$")]
+        public IFormFile ImageFile { get; set; }        
         [Display(Name = "Employee type")]
         public int? EmployeeTypeId {get; set;}
         [Display(Name = "Company name")]
