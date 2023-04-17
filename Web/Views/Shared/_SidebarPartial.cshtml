@@ -1,16 +1,26 @@
 ﻿@using Microsoft.AspNetCore.Mvc;
 @using Microsoft.AspNetCore.Http;
+@using System.Security.Claims;
 @using app.Common;
 @{
     var sourceImage = Context.Session.GetString("UserImage");
 }
-<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+<style>
+   .welcome {
+    color: white;
+    }
+    .welcome img{
+        width: 3.1rem;
+        margin-top: 10px;
+    }
+</style>
+<div class="user-panel mt-3 pb-3 mb-3 d-flex welcome">
     <div class="image">
         <img src='@sourceImage' class="img-circle elevation-2" alt="User Image">
     </div>
-    <br />
+    welcome
     <div class="info">
-        <a href="#" class="d-block">@User.Identity.Name</a>
+        <a href="#" class="d-block">@User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.GivenName).Value</a>
     </div>
 </div>
 <nav class="mt-2">
