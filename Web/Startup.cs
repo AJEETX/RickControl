@@ -35,6 +35,12 @@ namespace app.Web
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(120);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddDbContext<RiskControlDbContext>(options =>
             {
                 options.UseSqlite(Configuration["ConnectionStrings:SqlConStr"].ToString());
@@ -92,6 +98,8 @@ namespace app.Web
 
             app.UseAuthorization();
 
+            app.UseSession();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

@@ -1,6 +1,18 @@
-﻿@using Microsoft.AspNetCore.Http;
+﻿@using Microsoft.AspNetCore.Mvc;
+@using Microsoft.AspNetCore.Http;
 @using app.Common;
-
+@{
+    var sourceImage = Context.Session.GetString("UserImage");
+}
+<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    <div class="image">
+        <img src='@sourceImage' class="img-circle elevation-2" alt="User Image">
+    </div>
+    <br />
+    <div class="info">
+        <a href="#" class="d-block">@User.Identity.Name</a>
+    </div>
+</div>
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-header">Dashboard</li>

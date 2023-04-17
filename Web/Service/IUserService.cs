@@ -7,6 +7,6 @@ namespace app.Core.Service
 {
     public interface IUserService : IService<UserDTO>
     {
-        Task<(ServiceResult, List<string>)> Login(string email, string password);
+        Task<(ServiceResult, List<string>, string)> Login(string email, string password);
     }
 }

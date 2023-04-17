@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace app.Web.Controllers
 {
@@ -36,9 +37,10 @@ namespace app.Web.Controllers
             JsonResultModel jsonResultModel = new JsonResultModel();
             try
             {
-                var (result, roles) = await _userService.Login(model.Email, model.Password);
+                var (result, roles, image) = await _userService.Login(model.Email, model.Password);
                 if (result.IsSucceeded)
                 {
+                    HttpContext.Session.SetString("UserImage", image ?? "/dist/img/no-image.png");
                     var claims = new List<Claim> { new Claim(ClaimTypes.Name, model.Email) };
                     if(model.Email == app.Common.Constants.ADMIN_EMAIL)
                     {

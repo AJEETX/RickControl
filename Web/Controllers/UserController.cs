@@ -166,7 +166,7 @@ namespace app.Web.Controllers
                         Email = l.Email,
                         Name = l.Name,
                         Surname = l.Surname,
-                        ImageDisplay = l.Image ?? "no-image.PNG",
+                        ImageDisplay = l.Image ?? "no-image.png",
                         EmployeeType = l.EmployeeType?.ToString(),
                         CompanyName = l.StoreName,
                         CategoryName = l.CategoryName

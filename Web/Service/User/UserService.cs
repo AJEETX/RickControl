@@ -165,10 +165,11 @@ namespace app.Service.User
             }
             return result;
         }
-        public async Task<(ServiceResult, List<string>)> Login(string email, string password)
+        public async Task<(ServiceResult, List<string>, string)> Login(string email, string password)
         {
             ServiceResult result = new ServiceResult();
             List<string> roles = new List<string>();
+            string image = string.Empty;
             try
             {
                 using (_unitOfWork)
@@ -176,6 +177,7 @@ namespace app.Service.User
                     var login = await _unitOfWork.UserRepository.Login(email, password.MD5Hash());
                     if (login is not null)
                     {
+                        image = login.Image;
                         roles = login.Roles.Select(r => r.Code).ToList();
                         result.IsSucceeded = true;
                         result.UserMessage = CommonMessages.MSG0001;
@@ -192,7 +194,7 @@ namespace app.Service.User
                 result.IsSucceeded = false;
                 result.UserMessage = string.Format(CommonMessages.MSG0002, ex.Message);
             }
-            return (result, roles);
+            return (result, roles, image);
         }
         public async Task<ServiceResult> RemoveById(int id)
         {
