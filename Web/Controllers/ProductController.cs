@@ -99,6 +99,18 @@ namespace app.Web.Controllers
             return Json(jsonResultModel);
         }
 
+        public async Task<IActionResult> View(int id)
+        {
+            EditProductViewModel model = new EditProductViewModel();
+            var serviceResult = await _productService.GetById(id);
+            model = _mapper.Map<EditProductViewModel>(serviceResult.TransactionResult);
+            model.CategoryList = await GetCategoryList();
+            model.UnitOfMeasureList = await GetUnitOfMeasureList();
+
+            if (!string.IsNullOrEmpty(model.Image))
+                model.ImageDisplayURL = Path.Combine(_webHostEnvironment.WebRootPath, "upload", model.Image);
+            return View(model);
+        }
         public async Task<IActionResult> Edit(int id)
         {
             EditProductViewModel model = new EditProductViewModel();
