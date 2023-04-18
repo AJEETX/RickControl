@@ -1,7 +1,8 @@
-﻿@model app.Model.ViewModel.Category.CreateCategoryViewModel
+﻿@model app.Model.ViewModel.Category.EditCategoryViewModel
 @{
-    ViewData["Title"] = "Agency Create";
+    ViewData["Title"] = "Agency View";
 }
+
 @section script{
     <partial name="~/Views/Shared/_FormScriptsPartial.cshtml" />
 }
@@ -11,19 +12,18 @@
             <div class="col-md-6">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Create Agency</h3>
+                        <h3 class="card-title">View Agency</h3>
                     </div>
-                    <form asp-action="Create" asp-antiforgery="true" id="frmCreate">
+                    <form asp-action="Edit" asp-antiforgery="true" id="frmCreate">
                         <div class="card-body">
                             <div class="form-group">
                                 <label asp-for="CategoryName"></label>
-                                <input asp-for="CategoryName" type="text" class="form-control">
+                                <input disabled=true asp-for="CategoryName" type="text" class="form-control">
                                 <span asp-validation-for="CategoryName" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="card-footer text-right">
                             <a class="btn btn-default" href="/Category">Back</a>
-                            <button id="btnSave" type="submit" class="btn btn-primary">Create</button>
                         </div>
                     </form>
                 </div>
@@ -31,4 +31,6 @@
         </div>
     </div>
 </section>
+
+
 

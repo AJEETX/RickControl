@@ -101,7 +101,18 @@ namespace app.Web.Controllers
             return Json(jsonResultModel);
         }
 
-
+        public async Task<IActionResult> View(int id)
+        {
+            var serviceResult = await _userService.GetById(id);
+            EditUserViewModel model = _mapper.Map<EditUserViewModel>(serviceResult.TransactionResult);
+            model.AgencyList = await GetAgencyList();
+            model.CompanyList = await GetCompanyList();
+            model.EmployeeTypeList = await GetEmployeeTypeList();
+            model.UserRoles = await GetUserRoles();
+            if (!string.IsNullOrEmpty(model.Image))
+                model.ImageDisplayURL = Path.Combine(_webHostEnvironment.WebRootPath, "upload", model.Image);
+            return View(model);
+        }
         public async Task<IActionResult> Edit(int id)
         {
             var serviceResult = await _userService.GetById(id);

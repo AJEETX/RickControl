@@ -55,6 +55,15 @@ namespace app.Web.Controllers
             }
             return Json(jsonResultModel);
         }
+        public async Task<IActionResult> View(int id)
+        {
+            var serviceResult = await _roleService.GetById(id);
+            EditRoleViewModel model = new EditRoleViewModel { 
+                RoleCode =  serviceResult.TransactionResult.RoleCode, 
+                RoleName = serviceResult.TransactionResult.RoleName};
+            return View(model);
+        }
+
         public async Task<IActionResult> Edit(int id)
         {
             var serviceResult = await _roleService.GetById(id);

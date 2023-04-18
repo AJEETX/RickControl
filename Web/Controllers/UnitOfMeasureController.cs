@@ -58,13 +58,19 @@ namespace app.Web.Controllers
             return Json(jsonResultModel);
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> View(int id)
         {
             var serviceResult = await _unitOfMeasureService.GetById(id);
             EditUnitOfMeasureViewModel model = _mapper.Map<EditUnitOfMeasureViewModel>(serviceResult.TransactionResult);
             return View(model);
         }
 
+        public async Task<IActionResult> Edit(int id)
+        {
+            var serviceResult = await _unitOfMeasureService.GetById(id);
+            EditUnitOfMeasureViewModel model = _mapper.Map<EditUnitOfMeasureViewModel>(serviceResult.TransactionResult);
+            return View(model);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken()]
         public async Task<IActionResult> Edit(EditUnitOfMeasureViewModel model)

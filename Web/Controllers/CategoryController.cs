@@ -64,6 +64,12 @@ namespace app.Web.Controllers
             EditCategoryViewModel model = _mapper.Map<EditCategoryViewModel>(serviceResult.TransactionResult);
             return View(model);
         }
+        public async Task<IActionResult> View(int id)
+        {
+            var serviceResult = await _categoryService.GetById(id);
+            EditCategoryViewModel model = _mapper.Map<EditCategoryViewModel>(serviceResult.TransactionResult);
+            return View(model);
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken()]

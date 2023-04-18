@@ -1,0 +1,41 @@
+﻿@model app.Model.ViewModel.Role.EditRoleViewModel
+@{
+    ViewData["Title"] = "Role View";
+}
+
+@section script{
+    <partial name="~/Views/Shared/_FormScriptsPartial.cshtml" />
+}
+<section class="content pt-2">
+    <div class="container-fluid ">
+        <div class="row ">
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">View Role</h3>
+                    </div>
+                    <form asp-action="Edit" asp-antiforgery="true" id="frmCreate">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label asp-for="RoleCode"></label>
+                                <input disabled=true asp-for="RoleCode" type="text" class="form-control">
+                                <span asp-validation-for="RoleCode" class="text-danger"></span>
+                            </div>                            
+                            <div class="form-group">
+                                <label asp-for="RoleName"></label>
+                                <input disabled=true asp-for="RoleName" type="text" class="form-control">
+                                <span asp-validation-for="RoleName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="card-footer text-right">
+                            <a class="btn btn-default" href="/Role">Back</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

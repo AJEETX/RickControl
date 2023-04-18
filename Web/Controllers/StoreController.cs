@@ -57,13 +57,19 @@ namespace app.Web.Controllers
             return Json(jsonResultModel);
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> View(int id)
         {
             var serviceResult = await _storeService.GetById(id);
             EditStoreViewModel model = _mapper.Map<EditStoreViewModel>(serviceResult.TransactionResult);
             return View(model);
         }
 
+        public async Task<IActionResult> Edit(int id)
+        {
+            var serviceResult = await _storeService.GetById(id);
+            EditStoreViewModel model = _mapper.Map<EditStoreViewModel>(serviceResult.TransactionResult);
+            return View(model);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken()]
         public async Task<IActionResult> Edit(EditStoreViewModel model)
