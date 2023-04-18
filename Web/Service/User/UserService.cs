@@ -165,12 +165,14 @@ namespace app.Service.User
             }
             return result;
         }
-        public async Task<(ServiceResult, List<string>, string, string)> Login(string email, string password)
+        public async Task<(ServiceResult, List<string>, string, string, string, int)> Login(string email, string password)
         {
             ServiceResult result = new ServiceResult();
             List<string> roles = new List<string>();
             string image = string.Empty;
             string firstName = string.Empty;
+            string lastName = string.Empty;
+            int userId = 0;
             try
             {
                 using (_unitOfWork)
@@ -180,6 +182,8 @@ namespace app.Service.User
                     {
                         image = login.Image;
                         firstName = login.Name;
+                        lastName = login.Surname;
+                        userId = login.Id;
                         roles = login.Roles.Select(r => r.Code).ToList();
                         result.IsSucceeded = true;
                         result.UserMessage = CommonMessages.MSG0001;
@@ -196,7 +200,7 @@ namespace app.Service.User
                 result.IsSucceeded = false;
                 result.UserMessage = string.Format(CommonMessages.MSG0002, ex.Message);
             }
-            return (result, roles, image, firstName);
+            return (result, roles, image, firstName, lastName, userId);
         }
         public async Task<ServiceResult> RemoveById(int id)
         {

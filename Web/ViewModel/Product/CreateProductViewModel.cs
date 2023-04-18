@@ -11,7 +11,7 @@ namespace app.Model.ViewModel.Product
 
         [Required]
         [MaxLength(100)]
-        [Display(Name = "Claim case Name")]
+        [Display(Name = "Case Name")]
         public string ProductName { get; set; }
 
         [MaxLength(50)]
@@ -38,7 +38,7 @@ namespace app.Model.ViewModel.Product
         public string Status { get; set; }
 
         [Required]
-        [Display(Name = "Case type")]
+        [Display(Name = "Investigation type")]
         public int UnitOfMeasureId { get; set; }
 
         public IEnumerable<SelectListItem> CategoryList { get; set; }

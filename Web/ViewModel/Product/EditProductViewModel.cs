@@ -36,7 +36,7 @@ namespace app.Model.ViewModel.Product
         public int? CategoryId { get; set; }
 
         [Required]
-        [Display(Name = "Case type")]
+        [Display(Name = "Investigation type")]
         public int UnitOfMeasureId { get; set; }
         [Display(Name = "Status")]
         public string Status { get; set; }

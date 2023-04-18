@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using app.Model.ViewModel.Product;
 using app.Service;
 using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -110,6 +112,60 @@ namespace app.Web.Controllers
             if (!string.IsNullOrEmpty(model.Image))
                 model.ImageDisplayURL = Path.Combine(_webHostEnvironment.WebRootPath, "upload", model.Image);
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Upload(IFormFile postedFile)
+        {
+            if (postedFile != null)
+            {
+                string path = Path.Combine(_webHostEnvironment.WebRootPath, "upload-cases");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                string fileName = Path.GetFileName(postedFile.FileName);
+                string filePath = Path.Combine(path, fileName);
+                using (FileStream stream = new FileStream(filePath, FileMode.Create))
+                {
+                    postedFile.CopyTo(stream);
+                }
+                string csvData = await System.IO.File.ReadAllTextAsync(filePath);
+                DataTable dt = new DataTable();
+                bool firstRow = true;
+                foreach (string row in csvData.Split('\n'))
+                {
+                    if (!string.IsNullOrEmpty(row))
+                    {
+                        if (!string.IsNullOrEmpty(row))
+                        {
+                            if (firstRow)
+                            {
+                                foreach (string cell in row.Split(','))
+                                {
+                                    dt.Columns.Add(cell.Trim());
+                                }
+                                firstRow = false;
+                            }
+                            else
+                            {
+                                dt.Rows.Add();
+                                int i = 0;
+                                foreach (string cell in row.Split(','))
+                                {
+                                    dt.Rows[dt.Rows.Count - 1][i] = cell.Trim();
+                                    i++;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                return View("index",new SearchProductViewModel { DataTable = dt});
+            }
+
+            return View("index");
         }
         public async Task<IActionResult> Edit(int id)
         {

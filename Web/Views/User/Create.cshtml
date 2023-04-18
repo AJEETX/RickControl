@@ -73,7 +73,7 @@
                                     @foreach (var role in Model.UserRoles)
                                     {
                                         {
-                                            var isDisabled = !@User.IsInRole(Constants.ADMIN_ROLE) || !@User.IsInRole(Constants.CLIENT_ADMIN_ROLE);
+                                            var isDisabled = !@User.IsInRole(Constants.ADMIN_ROLE) && !@User.IsInRole(Constants.CLIENT_ADMIN_ROLE);
                                             <input 
                                             disabled=@isDisabled
                                             type="checkbox" 

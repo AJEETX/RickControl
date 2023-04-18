@@ -15,13 +15,18 @@
     }
 </style>
 <div class="user-panel mt-3 pb-3 mb-3 d-flex welcome">
+    @{
+        var userId = @User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.PrimarySid).Value;
+    }
+   <a href="/User/Edit/@userId"  class="d-block">
     <div class="image">
         <img src='@sourceImage' class="img-circle elevation-2" alt="User Image">
     </div>
-    
+    <br />
     <div class="info">
-        welcome !!!<a href="#" class="d-block">@User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.GivenName).Value</a>
+        welcome !!!@User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.GivenName).Value @User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Surname).Value
     </div>
+    </a>
 </div>
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -84,7 +89,7 @@
                 <a href="/UnitOfMeasure" class="nav-link">
                 <i class="nav-icon fas fa-box-open"></i>
                 <p>
-                    Case types
+                    Investigation types
                 </p>
             </a>
             }

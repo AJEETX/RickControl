@@ -53,7 +53,7 @@ namespace app.Web
                 {
                     options.LoginPath = new PathString("/auth/login");
                     options.Cookie.HttpOnly = true;
-                    options.ExpireTimeSpan = TimeSpan.FromSeconds(120);
+                    options.ExpireTimeSpan = TimeSpan.FromSeconds(1200);
                     options.SlidingExpiration = true;
                 });
             services.AddAutoMapper(c => c.AddProfile<app.Mapper.MapProfile>(), typeof(Startup));

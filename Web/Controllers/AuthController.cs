@@ -37,12 +37,14 @@ namespace app.Web.Controllers
             JsonResultModel jsonResultModel = new JsonResultModel();
             try
             {
-                var (result, roles, image, firstName) = await _userService.Login(model.Email, model.Password);
+                var (result, roles, image, firstName, surName, userId) = await _userService.Login(model.Email, model.Password);
                 if (result.IsSucceeded)
                 {
                     HttpContext.Session.SetString("UserImage", image ?? "/dist/img/no-image.png");
                     var claims = new List<Claim> { new Claim(ClaimTypes.Name, model.Email) };
                     claims.Add(new Claim(ClaimTypes.GivenName, firstName));
+                    claims.Add(new Claim(ClaimTypes.Surname, surName));
+                    claims.Add(new Claim(ClaimTypes.PrimarySid, userId.ToString()));
                     if(model.Email == app.Common.Constants.ADMIN_EMAIL)
                     {
                         claims.Add(new Claim(ClaimTypes.Role, app.Common.Constants.ADMIN_ROLE));

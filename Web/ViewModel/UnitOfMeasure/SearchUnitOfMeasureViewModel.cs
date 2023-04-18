@@ -5,9 +5,9 @@ namespace app.Model.ViewModel.UnitOfMeasure
 {
     public class SearchUnitOfMeasureViewModel : BaseViewModel
     {
-        [Display(Name = "Case type Name")]
+        [Display(Name = "Investigation type Name")]
         public string UnitOfMeasureName { get; set; }
-        [Display(Name = "Case type code")]
+        [Display(Name = "Investigation type code")]
         public string Isocode { get; set; }
     }
 }

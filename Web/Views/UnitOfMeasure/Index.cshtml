@@ -1,6 +1,6 @@
 ﻿@model app.Model.ViewModel.UnitOfMeasure.SearchUnitOfMeasureViewModel
 @{
-    ViewData["Title"] = "Case types";
+    ViewData["Title"] = "Investigation types";
 }
 
 <section class="content pt-2">
@@ -30,7 +30,7 @@
                             <div class="col-md-12 text-right">
                                 <button id="btnClear" type="button" class="btn btn-secondary btn-sm"><i class="fas fa-sync-alt"></i> Clear</button>
                                 <button id="btnFilter" type="button" class="btn btn-primary btn-sm"><i class="fas fa-search"></i> Search</button>
-                                <a class="btn btn-info btn-sm" href="/UnitOfMeasure/Create"><i class="fas fa-plus"></i> Create Case type</a>
+                                <a class="btn btn-info btn-sm" href="/UnitOfMeasure/Create"><i class="fas fa-plus"></i> Create Investigation type</a>
                             </div>
                         </div>
                     </div>
@@ -42,14 +42,14 @@
             <div class="col-12">
                 <div class="card card-secondary">
                     <div class="card-header">
-                        <h3 class="card-title">Case type List</h3>
+                        <h3 class="card-title">Investigation type List</h3>
                     </div>
                     <div class="card-body">
                         <table id="datatable" class="table table-bordered table-hover dt-responsive nowrap w-100">
                             <thead>
                                 <tr>
-                                    <th>Case type Name</th>
-                                    <th>Case type Short Code</th>
+                                    <th>Investigation type Name</th>
+                                    <th>Investigation type Short Code</th>
                                     <th style="width:15%">Actions</th>
                                 </tr>
                             </thead>
