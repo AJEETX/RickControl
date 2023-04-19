@@ -1,11 +1,19 @@
 ﻿@model app.Model.ViewModel.Product.SearchProductViewModel
+@using System.Security.Claims;
 @using app.Common;
 @using System.Data;
 
 @{
     ViewData["Title"] = "Case List";
 }
-
+<script>
+    var userRole = '@User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value';
+    var correctRole = "none";
+    if('@User.IsInRole(Constants.ADMIN_ROLE)' =='True' || '@User.IsInRole(Constants.CLIENT_CREATOR_ROLE)' =='True')
+    {
+        correctRole = "inline-block";
+    }
+</script>
 <section class="content pt-2">
     <div class="container-fluid">
         <div class="row">
@@ -54,11 +62,11 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 text-right">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <form asp-controller="Product" asp-action="Upload" method="post" enctype="multipart/form-data">
-                                     <div style="display: inline-block;">  <input type="file" name="postedFile"  class="btn btn-secondary" /></div> 
-                                      <div style="display: inline-block;"> <input type="submit" class="btn btn-danger"  value="Bulk upload cases" /><i class="fas fa-upload"></i></div> 
+                                     <div style="display: inline-block;">  <input type="file" name="postedFile" /></div> 
+                                      <div style="display: inline-block;"> <input type="submit" class="btn btn-danger"  value="Bulk upload cases" /></div> 
                                     </form>
                                 </div>
                             </div>

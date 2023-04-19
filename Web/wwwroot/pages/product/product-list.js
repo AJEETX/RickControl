@@ -67,9 +67,9 @@ $(document).ready(function () {
                     "bSortable": false,
                     "mRender": function (data, type, row) {
                         var buttons = "";
-                        buttons += '<a href="/Product/View/' + row.Id + '" class="btn btn-xs btn-warning"><i class="fa fa-search"></i> View</a>&nbsp;'
-                        buttons += '<a href="/Product/Edit/' + row.Id + '" class="btn btn-xs btn-warning"><i class="fas fa-pen"></i> Edit</a>&nbsp;'
-                        buttons += '<a onclick="deleteRow(this,' + row.Id + ')"  class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Delete</a>'
+                        buttons += '<a href="/Product/View/' + row.Id + '" style=display:' + correctRole + '; class="btn btn-xs btn-warning"><i class="fa fa-search"></i> View</a>&nbsp;'
+                        buttons += '<a href="/Product/Edit/' + row.Id + '" style=display:' + correctRole + '; class="btn btn-xs btn-warning"><i class="fas fa-pen"></i> Edit</a>&nbsp;'
+                        buttons += '<a onclick="deleteRow(this,' + row.Id + ')" style=display:' + correctRole + '; class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Delete</a>'
                         return buttons;
                     }
                 }
