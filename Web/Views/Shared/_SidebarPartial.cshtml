@@ -61,7 +61,7 @@
             </ul>
           </li> *@
         <li class="nav-item">
-            @if(User.IsInRole(Constants.ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_CREATOR_ROLE))
+            @if(User.IsInRole(Constants.ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_ADMIN_ROLE) || User.IsInRole(Constants.CLIENT_CREATOR_ROLE) || User.IsInRole(Constants.CLIENT_ASSIGNER_ROLE))
             {
             <a href="/Product" class="nav-link">
                 <i class="nav-icon fas fa-barcode"></i>

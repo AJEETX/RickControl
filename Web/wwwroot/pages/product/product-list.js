@@ -34,11 +34,32 @@ $(document).ready(function () {
                 }
             });
         },
+        columnDefs: [{
+            orderable: false,
+            className: 'select-checkbox',
+            targets: 0
+        }],
+        select: {
+            style: 'os',
+            selector: 'td:first-child'
+        },
+        order: [
+            [1, 'asc']
+        ],
         aoColumns:
             [
                 {
                     "sDefaultContent": "",
                     "bSortable": false,
+                    "mRender": function (data, type, row) {
+                        var cbox = '<input type="checkbox" style=display:' + adminRole + '; name="id[]" value="' + $('<div/>').text(data).html() + '">';
+                        return cbox;
+                    }
+                },
+                //<input type="checkbox" style=display:' + adminRole + '; name="id[]" value="' + $('<div/>').text(data).html() + '">
+                {
+                    "sDefaultContent": "",
+                    "bSortable": true,
                     "mRender": function (data, type, row) {
                         var img = '<img src="upload/' + row.ImageDisplay + '" src height="30" alt="No image" />';
                         return img;
@@ -67,15 +88,43 @@ $(document).ready(function () {
                     "bSortable": false,
                     "mRender": function (data, type, row) {
                         var buttons = "";
-                        buttons += '<a href="/Product/View/' + row.Id + '" style=display:' + correctRole + '; class="btn btn-xs btn-warning"><i class="fa fa-search"></i> View</a>&nbsp;'
-                        buttons += '<a href="/Product/Edit/' + row.Id + '" style=display:' + correctRole + '; class="btn btn-xs btn-warning"><i class="fas fa-pen"></i> Edit</a>&nbsp;'
-                        buttons += '<a onclick="deleteRow(this,' + row.Id + ')" style=display:' + correctRole + '; class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Delete</a>'
+                        buttons += '<a href="/Product/View/' + row.Id + '" style=display:' + viewRole + '; class="btn btn-xs btn-warning"><i class="fa fa-search"></i> View</a>&nbsp;'
+                        buttons += '<a href="/Product/Edit/' + row.Id + '" style=display:' + adminRole + '; class="btn btn-xs btn-warning"><i class="fas fa-pen"></i> Edit</a>&nbsp;'
+                        buttons += '<a onclick="deleteRow(this,' + row.Id + ')" style=display:' + adminRole + '; class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Delete</a>'
+                        // buttons += '<input type="checkbox" style=display:' + adminRole + '; name="id[]" value="' + $('<div/>').text(data).html() + '">'
                         return buttons;
                     }
                 }
+            ],
+            select: {
+                style: 'os',
+                selector: 'td:first-child'
+            },
+            order: [
+                [1, 'asc']
             ]
     });
 
+    datatable.on("click", "th.select-checkbox", function() {
+        if ($("th.select-checkbox").hasClass("selected")) {
+            datatable.rows().deselect();
+            $("th.select-checkbox").removeClass("selected");
+        } else {
+            datatable.rows().select();
+            $("th.select-checkbox").addClass("selected");
+        }
+    }).on("select deselect", function() {
+        ("Some selection or deselection going on")
+        if (datatable.rows({
+                selected: true
+            }).count() !== datatable.rows().count()) {
+            $("th.select-checkbox").removeClass("selected");
+        } else {
+            $("th.select-checkbox").addClass("selected");
+        }
+    });
+
+    
     $("#btnFilter").click(function () {
         datatable.fnFilter();
     });
